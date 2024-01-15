@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stock_news_flutter/core/widgets/app_page.dart';
 import 'package:stock_news_flutter/core/widgets/layout_delegate.dart';
+import 'package:stock_news_flutter/di/container.dart';
+import 'package:stock_news_flutter/features/user/presentation/blocs/greeting_bloc.dart';
+import 'package:stock_news_flutter/features/user/presentation/widgets/greeting_widget.dart';
 import 'package:stock_news_flutter/routing/initial_page_routes.dart';
 
 class HomePage extends AppPage<void> {
@@ -19,7 +23,18 @@ class HomePage extends AppPage<void> {
     return MaterialPageRoute(
       settings: this,
       builder: (context) {
-        return const HomeView();
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) {
+                final bloc = serviceLocator<GreetingBloc>();
+                bloc.add(const LoadGreetingEvent());
+                return bloc;
+              },
+            ),
+          ],
+          child: const HomeView(),
+        );
       },
     );
   }
@@ -31,8 +46,13 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const LayoutDelegate(
-      child: Center(
-        child: Text('Home'),
+      child: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            GreetingWidget(),
+          ],
+        ),
       ),
     );
   }

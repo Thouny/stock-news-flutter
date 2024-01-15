@@ -37,8 +37,10 @@ class _RootPageTabScaffoldState extends State<RootPageTabScaffold>
       key: context.read<controller.MenuController>().scaffoldKey,
       bottomNavigationBar: !isTablet
           ? BottomNavbar(
-              selectedIndex: tabState.index,
-              itemCount: tabState.stacks.length,
+              currentIndex: tabState.index,
+              onTap: (index) {
+                setState(() => tabState.index = index);
+              },
             )
           : null,
       body: HeroControllerScope(

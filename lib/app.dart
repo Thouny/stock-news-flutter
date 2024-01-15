@@ -2,10 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:stock_news_flutter/core/consts/app_consts.dart';
-
 import 'package:stock_news_flutter/core/controller/menu_controller.dart'
     as controller;
 import 'package:stock_news_flutter/routing/page_routes.dart';
+
+import 'di/container.dart' as di;
+
+Future<void> initApp() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await di.init();
+
+  runApp(const AppWrapper());
+}
 
 class AppWrapper extends StatelessWidget {
   const AppWrapper({super.key});
@@ -49,7 +58,9 @@ class _AppState extends State<App> {
       routerDelegate: routemaster,
       builder: (context, child) => MediaQuery(
         // override OS-level font scaling
-        data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+        data: MediaQuery.of(context).copyWith(
+          textScaler: const TextScaler.linear(1.0),
+        ),
         child: child ?? const SizedBox.shrink(),
       ),
     );
