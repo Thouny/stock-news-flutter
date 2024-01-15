@@ -16,7 +16,7 @@ class ResponsiveUtils extends StatelessWidget {
 
   static bool get isIpad {
     return Platform.isIOS &&
-        MediaQueryData.fromWindow(WidgetsBinding.instance.window)
+        MediaQueryData.fromView(WidgetsBinding.instance.window)
                 .size
                 .shortestSide >
             600;
