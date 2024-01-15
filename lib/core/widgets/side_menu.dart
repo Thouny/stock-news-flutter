@@ -27,7 +27,7 @@ class SideMenu extends StatelessWidget {
             },
             icon: const IconButton(
               onPressed: null,
-              icon: Icon(Icons.dashboard_rounded, color: Colors.white),
+              icon: Icon(Icons.home, color: Colors.white),
             ),
           ),
           _DrawerListTile(
