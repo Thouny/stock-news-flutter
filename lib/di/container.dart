@@ -6,6 +6,7 @@ import 'package:stock_news_flutter/core/network/api/news_http_client.dart';
 import 'package:stock_news_flutter/core/network/service/connectivity_service.dart';
 import 'package:stock_news_flutter/core/storage/secure_storage.dart';
 import 'package:stock_news_flutter/core/utils/clock.dart';
+import 'package:stock_news_flutter/core/utils/link_handler.dart';
 
 import 'user.dart' as user;
 import 'news.dart' as news;
@@ -22,6 +23,8 @@ Future<void> init() async {
   serviceLocator.registerLazySingleton<ConnectionService>(() {
     return ConnectionServiceImpl(serviceLocator<Connectivity>());
   });
+  // link handler
+  serviceLocator.registerFactory<LinkHandler>(() => const LinkHandlerImpl());
   // news http client
   serviceLocator.registerLazySingleton(() {
     return NewsHttpClient(serviceLocator());
