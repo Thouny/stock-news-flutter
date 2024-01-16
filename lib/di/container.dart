@@ -1,8 +1,10 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:stock_news_flutter/core/network/api/news_http_client.dart';
-import 'package:stock_news_flutter/core/network/connectivity_service.dart';
+import 'package:stock_news_flutter/core/network/service/connectivity_service.dart';
+import 'package:stock_news_flutter/core/storage/secure_storage.dart';
 import 'package:stock_news_flutter/core/utils/clock.dart';
 
 import 'user.dart' as user;
@@ -25,6 +27,9 @@ Future<void> init() async {
   serviceLocator.registerLazySingleton(() {
     return NewsHttpClient(serviceLocator());
   });
+  serviceLocator.registerLazySingleton<SecureStorage>(() {
+    return SecureStorage(storage: serviceLocator());
+  });
   /* ======================================================================== */
 
   /* Third-party ============================================================ */
@@ -33,5 +38,7 @@ Future<void> init() async {
     return BaseOptions(contentType: 'application/json');
   });
   serviceLocator.registerLazySingleton(() => Dio(serviceLocator()));
+  // flutter secure storage
+  serviceLocator.registerLazySingleton(() => const FlutterSecureStorage());
   /* ======================================================================== */
 }

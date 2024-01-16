@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:stock_news_flutter/core/consts/app_consts.dart';
+import 'package:stock_news_flutter/core/consts/env_consts.dart';
 import 'package:stock_news_flutter/core/controller/menu_controller.dart'
     as controller;
+import 'package:stock_news_flutter/core/enums/storage_keys.dart';
+import 'package:stock_news_flutter/core/storage/secure_storage.dart';
+import 'package:stock_news_flutter/di/container.dart';
 import 'package:stock_news_flutter/routing/page_routes.dart';
 
 import 'di/container.dart' as di;
@@ -12,6 +16,10 @@ Future<void> initApp() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await di.init();
+
+  final storage = serviceLocator<SecureStorage>();
+  const newsApiKey = String.fromEnvironment(EnvConsts.newsApiKey);
+  await storage.write(StorageKeys.newsApiKey.name, newsApiKey);
 
   runApp(const AppWrapper());
 }
