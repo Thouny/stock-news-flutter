@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stock_news_flutter/core/error/failures.dart';
 import 'package:stock_news_flutter/core/usercase/usecase.dart';
 import 'package:stock_news_flutter/features/user/domain/usecases/get_greeting_usecase.dart';
 
@@ -21,7 +22,16 @@ class GreetingBloc extends Bloc<GreetingEvent, GreetingState> {
     LoadGreetingEvent event,
     Emitter<GreetingState> emit,
   ) async {
-    final greeting = await _getGreetingUsecase(const NoParams());
-    emit(LoadedGreetingState(greeting: greeting));
+    final greetingEither = await _getGreetingUsecase(const NoParams());
+    greetingEither.fold(
+      (failure) {
+        if (failure is ClockFailure) {
+          emit(ErrorGreetingState(message: failure.message));
+        } else {
+          emit(const ErrorGreetingState(message: 'Unexpected Error'));
+        }
+      },
+      (greeting) => emit(LoadedGreetingState(greeting: greeting)),
+    );
   }
 }

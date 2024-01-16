@@ -19,3 +19,12 @@ class LoadedGreetingState extends GreetingState {
   @override
   List<Object> get props => [greeting];
 }
+
+class ErrorGreetingState extends GreetingState {
+  final String message;
+
+  const ErrorGreetingState({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
