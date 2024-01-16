@@ -46,7 +46,7 @@ void main() {
     whenListen(
       mockGreetingBloc,
       Stream.value(const InitialGreetingState()),
-      initialState: const InitialGreetingState(),
+      initialState: const ErrorGreetingState(message: 'Clock Failure'),
     );
     await tester.pumpWidget(_WidgetWrapper(greetingBloc: mockGreetingBloc));
     await tester.pumpAndSettle();
