@@ -7,22 +7,23 @@ import 'package:stock_news_flutter/features/news/domain/entities/news_entity.dar
 import 'package:stock_news_flutter/features/news/domain/repositories/news_repository.dart';
 
 class NewsRepositoryImpl implements NewsRepository {
-  final NewsRemoteDataSource remoteDataSource;
-  final ConnectionService connectionService;
+  final NewsRemoteDataSource _remoteDataSource;
+  final ConnectionService _connectionService;
 
   NewsRepositoryImpl({
-    required this.remoteDataSource,
-    required this.connectionService,
-  });
+    required NewsRemoteDataSource remoteDataSource,
+    required ConnectionService connectionService,
+  })  : _remoteDataSource = remoteDataSource,
+        _connectionService = connectionService;
 
   @override
   Future<Either<Failure, List<NewsEntity>>> getTopHeadlines() async {
     try {
-      if (!await connectionService.isConnected) {
+      if (!await _connectionService.isConnected) {
         return const Left(NoConnectionFailure('No Connection'));
       }
 
-      final newsModels = await remoteDataSource.getTopHeadlines();
+      final newsModels = await _remoteDataSource.getTopHeadlines();
       final newsEntities = newsModels.map((model) => model.toEntity).toList();
       return Right(newsEntities);
     } on ServerException catch (error) {

@@ -17,28 +17,28 @@ Future<void> init() async {
   news.init(serviceLocator);
   user.init(serviceLocator);
   /* ======================================================================== */
-
   /* Core =================================================================== */
   serviceLocator.registerLazySingleton(() => const Clock());
-  serviceLocator.registerLazySingleton(() {
-    return ConnectionServiceImpl(Connectivity());
+  serviceLocator.registerLazySingleton<ConnectionService>(() {
+    return ConnectionServiceImpl(serviceLocator<Connectivity>());
   });
   // news http client
   serviceLocator.registerLazySingleton(() {
     return NewsHttpClient(serviceLocator());
   });
   serviceLocator.registerLazySingleton<SecureStorage>(() {
-    return SecureStorage(storage: serviceLocator());
+    return SecureStorage(serviceLocator());
   });
   /* ======================================================================== */
-
   /* Third-party ============================================================ */
+  // connection
+  serviceLocator.registerLazySingleton(() => Connectivity());
   // dio
-  serviceLocator.registerLazySingleton(() {
-    return BaseOptions(contentType: 'application/json');
-  });
+  serviceLocator.registerLazySingleton(() => BaseOptions());
   serviceLocator.registerLazySingleton(() => Dio(serviceLocator()));
   // flutter secure storage
-  serviceLocator.registerLazySingleton(() => const FlutterSecureStorage());
+  serviceLocator.registerLazySingleton<FlutterSecureStorage>(() {
+    return const FlutterSecureStorage();
+  });
   /* ======================================================================== */
 }

@@ -23,8 +23,7 @@ abstract class AppKeyValueStore {
 class SecureStorage extends AppKeyValueStore {
   final FlutterSecureStorage _storage;
 
-  const SecureStorage({required FlutterSecureStorage storage})
-      : _storage = storage;
+  const SecureStorage(FlutterSecureStorage storage) : _storage = storage;
 
   @override
   Future<T?> read<T>(String key, {T? defaultValue}) async {

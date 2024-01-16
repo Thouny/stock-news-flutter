@@ -13,7 +13,7 @@ class _NewsHttpClient implements NewsHttpClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://newsapi.org/v2';
+    baseUrl ??= 'https://newsapi.org/v2/';
   }
 
   final Dio _dio;
@@ -22,12 +22,16 @@ class _NewsHttpClient implements NewsHttpClient {
 
   @override
   Future<GetNewsResponseModel> getTopHeadlines(
-      {required GetNewsRequestModel request}) async {
+    String country,
+    String apiKey,
+  ) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'country': country,
+      r'apiKey': apiKey,
+    };
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(request.toJson());
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<GetNewsResponseModel>(Options(
       method: 'GET',

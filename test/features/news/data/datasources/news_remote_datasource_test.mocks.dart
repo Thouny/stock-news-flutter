@@ -8,11 +8,9 @@ import 'dart:async' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:stock_news_flutter/core/network/api/news_http_client.dart'
     as _i3;
-import 'package:stock_news_flutter/core/network/models/get_news_request_model.dart'
-    as _i5;
 import 'package:stock_news_flutter/core/network/models/get_news_response_model.dart'
     as _i2;
-import 'package:stock_news_flutter/core/storage/secure_storage.dart' as _i6;
+import 'package:stock_news_flutter/core/storage/secure_storage.dart' as _i5;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -48,20 +46,26 @@ class MockNewsHttpClient extends _i1.Mock implements _i3.NewsHttpClient {
 
   @override
   _i4.Future<_i2.GetNewsResponseModel> getTopHeadlines(
-          {required _i5.GetNewsRequestModel? request}) =>
+    String? country,
+    String? apiKey,
+  ) =>
       (super.noSuchMethod(
         Invocation.method(
           #getTopHeadlines,
-          [],
-          {#request: request},
+          [
+            country,
+            apiKey,
+          ],
         ),
         returnValue: _i4.Future<_i2.GetNewsResponseModel>.value(
             _FakeGetNewsResponseModel_0(
           this,
           Invocation.method(
             #getTopHeadlines,
-            [],
-            {#request: request},
+            [
+              country,
+              apiKey,
+            ],
           ),
         )),
       ) as _i4.Future<_i2.GetNewsResponseModel>);
@@ -70,7 +74,7 @@ class MockNewsHttpClient extends _i1.Mock implements _i3.NewsHttpClient {
 /// A class which mocks [SecureStorage].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSecureStorage extends _i1.Mock implements _i6.SecureStorage {
+class MockSecureStorage extends _i1.Mock implements _i5.SecureStorage {
   MockSecureStorage() {
     _i1.throwOnMissingStub(this);
   }

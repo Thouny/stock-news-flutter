@@ -1,7 +1,6 @@
 import 'package:stock_news_flutter/core/enums/storage_keys.dart';
 import 'package:stock_news_flutter/core/error/exceptions.dart';
 import 'package:stock_news_flutter/core/network/api/news_http_client.dart';
-import 'package:stock_news_flutter/core/network/models/get_news_request_model.dart';
 import 'package:stock_news_flutter/core/network/models/get_news_response_model.dart';
 import 'package:stock_news_flutter/core/storage/secure_storage.dart';
 
@@ -24,13 +23,10 @@ class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
     final key = StorageKeys.newsApiKey.name;
     final apiKey = await _storage.read<String>(key) ?? "";
     if (apiKey.isEmpty) throw const StorageException("API key not found");
-
-    final request = GetNewsRequestModel(apiKey: apiKey);
-    final response = await _client.getTopHeadlines(request: request);
+    final response = await _client.getTopHeadlines('au', apiKey);
     if (response.status != "ok") {
       throw const ServerException('Server responded with an error code');
     }
-
     return response.articles;
   }
 }

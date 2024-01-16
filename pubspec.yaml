@@ -29,7 +29,9 @@ dependencies:
   # network
   connectivity_plus: ^5.0.2
   dio: ^5.4.0
+  http: ^1.1.2
   retrofit: ^4.0.3
+  url_launcher: ^6.2.3
 
   # storage
   flutter_secure_storage: ^9.0.0
