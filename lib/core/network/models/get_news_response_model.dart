@@ -9,7 +9,7 @@ class GetNewsResponseModel {
   final int totalResults;
   final List<ArticleModel> articles;
 
-  GetNewsResponseModel({
+  const GetNewsResponseModel({
     required this.status,
     required this.totalResults,
     required this.articles,
@@ -32,7 +32,7 @@ class ArticleModel {
   final String publishedAt;
   final String? content;
 
-  ArticleModel({
+  const ArticleModel({
     required this.source,
     required this.author,
     required this.title,
@@ -67,7 +67,7 @@ class SourceModel {
   final String? id;
   final String name;
 
-  SourceModel({
+  const SourceModel({
     this.id,
     required this.name,
   });

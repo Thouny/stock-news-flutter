@@ -13,20 +13,27 @@ class ClockFailure extends Failure {
   List<Object?> get props => [];
 }
 
-class NetworkFailure extends Failure {
-  final String message;
-  final int statusCode;
-
-  NetworkFailure({required this.message, required this.statusCode})
-      : super([message, statusCode]);
-
-  @override
-  List<Object?> get props => [message, statusCode];
-}
-
-class ServerFailure extends Failure {
-  const ServerFailure();
+class NoConnectionFailure extends Failure {
+  const NoConnectionFailure();
 
   @override
   List<Object?> get props => [];
+}
+
+class NetworkFailure extends Failure {
+  final String message;
+
+  NetworkFailure({required this.message}) : super([message]);
+
+  @override
+  List<Object?> get props => [message];
+}
+
+class ServerFailure extends Failure {
+  final String message;
+
+  ServerFailure({required this.message}) : super([message]);
+
+  @override
+  List<Object?> get props => [message];
 }
