@@ -10,21 +10,18 @@ class GreetingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context).textTheme.headlineSmall;
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: BlocBuilder<GreetingBloc, GreetingState>(
-        builder: (context, state) {
-          if (state is LoadedGreetingState) {
-            return Text(
-              key: const Key('$keyPrefix-Text'),
-              state.greeting,
-              style: textStyle,
-            );
-          } else {
-            return const SizedBox.shrink();
-          }
-        },
-      ),
+    return BlocBuilder<GreetingBloc, GreetingState>(
+      builder: (context, state) {
+        if (state is LoadedGreetingState) {
+          return Text(
+            key: const Key('$keyPrefix-Text'),
+            state.greeting,
+            style: textStyle,
+          );
+        } else {
+          return const SizedBox.shrink();
+        }
+      },
     );
   }
 }

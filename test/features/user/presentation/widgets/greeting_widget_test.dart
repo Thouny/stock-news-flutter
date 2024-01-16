@@ -25,35 +25,39 @@ void main() {
     GetIt.I.reset();
   });
 
-  testWidgets('should display a greeting message', (tester) async {
-    // arrange
-    whenListen(
-      mockGreetingBloc,
-      Stream.value(const LoadedGreetingState(greeting: tGreeting)),
-      initialState: const InitialGreetingState(),
-    );
-    await tester.pumpWidget(_WidgetWrapper(greetingBloc: mockGreetingBloc));
-    await tester.pumpAndSettle();
-    const greetingTextKey = Key('$keyPrefix-Text');
-    // act
-    final greetingText = find.byKey(greetingTextKey);
-    // assert
-    expect(greetingText, findsOneWidget);
+  group('LoadedGreetingState', () {
+    testWidgets('should display a greeting message', (tester) async {
+      // arrange
+      whenListen(
+        mockGreetingBloc,
+        Stream.value(const LoadedGreetingState(greeting: tGreeting)),
+        initialState: const InitialGreetingState(),
+      );
+      await tester.pumpWidget(_WidgetWrapper(greetingBloc: mockGreetingBloc));
+      await tester.pumpAndSettle();
+      const greetingTextKey = Key('$keyPrefix-Text');
+      // act
+      final greetingText = find.byKey(greetingTextKey);
+      // assert
+      expect(greetingText, findsOneWidget);
+    });
   });
 
-  testWidgets('should render a [SizedBox.shrink()]', (tester) async {
-    // arrange
-    whenListen(
-      mockGreetingBloc,
-      Stream.value(const InitialGreetingState()),
-      initialState: const ErrorGreetingState(message: 'Clock Failure'),
-    );
-    await tester.pumpWidget(_WidgetWrapper(greetingBloc: mockGreetingBloc));
-    await tester.pumpAndSettle();
-    // act
-    final sizedBox = find.byType(SizedBox);
-    // assert
-    expect(sizedBox, findsOneWidget);
+  group('Other state', () {
+    testWidgets('should render a [SizedBox.shrink()]', (tester) async {
+      // arrange
+      whenListen(
+        mockGreetingBloc,
+        Stream.value(const InitialGreetingState()),
+        initialState: const ErrorGreetingState(message: 'Clock Failure'),
+      );
+      await tester.pumpWidget(_WidgetWrapper(greetingBloc: mockGreetingBloc));
+      await tester.pumpAndSettle();
+      // act
+      final sizedBox = find.byType(SizedBox);
+      // assert
+      expect(sizedBox, findsOneWidget);
+    });
   });
 }
 
