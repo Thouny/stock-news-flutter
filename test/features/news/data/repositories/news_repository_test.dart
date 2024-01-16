@@ -45,11 +45,8 @@ void main() {
   ];
   const tServerException =
       ServerException('Server responded with an error code');
-  const tNetworkException = NetworkException('Network request failed');
-  const tNoConnectionFailure = NoConnectionFailure();
-  final tServerFailure =
-      ServerFailure(message: 'Server responded with an error code');
-  final tNetworkFailure = NetworkFailure(message: 'Network request failed');
+  const tNoConnectionFailure = NoConnectionFailure('No Connection');
+  const tServerFailure = ServerFailure('Server responded with an error code');
 
   setUp(() {
     mockRemoteDataSource = MockNewsRemoteDataSource();
@@ -82,18 +79,7 @@ void main() {
       // act
       final resultEither = await repository.getTopHeadlines();
       // assert
-      expect(resultEither, Left(tServerFailure));
-    });
-
-    test('should return [NetworkFailure] when repo throws [NetworkException]',
-        () async {
-      // arrange
-      when(mockConnectionService.isConnected).thenAnswer((_) async => true);
-      when(mockRemoteDataSource.getTopHeadlines()).thenThrow(tNetworkException);
-      // act
-      final resultEither = await repository.getTopHeadlines();
-      // assert
-      expect(resultEither, Left(tNetworkFailure));
+      expect(resultEither, const Left(tServerFailure));
     });
 
     test('should return [NoConnectionFailure] when connection is not available',

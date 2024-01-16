@@ -19,16 +19,16 @@ class NewsRepositoryImpl implements NewsRepository {
   Future<Either<Failure, List<NewsEntity>>> getTopHeadlines() async {
     try {
       if (!await connectionService.isConnected) {
-        return const Left(NoConnectionFailure());
+        return const Left(NoConnectionFailure('No Connection'));
       }
 
       final newsModels = await remoteDataSource.getTopHeadlines();
       final newsEntities = newsModels.map((model) => model.toEntity).toList();
       return Right(newsEntities);
     } on ServerException catch (error) {
-      return Left(ServerFailure(message: error.message));
+      return Left(ServerFailure(error.message));
     } catch (error) {
-      return Left(NetworkFailure(message: error.toString()));
+      return Left(Failure(error.toString()));
     }
   }
 }

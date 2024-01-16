@@ -40,8 +40,8 @@ void main() {
     blocTest<GreetingBloc, GreetingState>(
       'should emit [ErrorGreetingState] when the usecase returns a failure',
       setUp: () {
-        when(mockGetGreetingUsecase.call(any)).thenAnswer(
-            (_) async => const Left(ClockFailure(message: 'Clock Failure')));
+        when(mockGetGreetingUsecase.call(any))
+            .thenAnswer((_) async => const Left(ClockFailure('Clock Failure')));
       },
       build: () => bloc,
       act: (bloc) => bloc.add(const LoadGreetingEvent()),

@@ -17,7 +17,7 @@ void main() {
   final morningTime = DateTime(2017, 9, 7, 8, 30);
   final afternoonTime = DateTime(2017, 9, 7, 14, 30);
   final eveningTime = DateTime(2017, 9, 7, 18, 30);
-  const tClockFailure = ClockFailure(message: 'Clock Failure');
+  const tClockFailure = ClockFailure('Clock Failure');
 
   setUp(() {
     mockClock = MockClock();

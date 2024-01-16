@@ -20,7 +20,7 @@ class GetGreetingUsecase implements Usecase<String, NoParams> {
         return const Right('Good evening 🌙');
       }
     } catch (_) {
-      return const Left(ClockFailure(message: 'Clock Failure'));
+      return const Left(ClockFailure('Clock Failure'));
     }
   }
 }
