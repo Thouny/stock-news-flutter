@@ -46,15 +46,17 @@ class MockNewsHttpClient extends _i1.Mock implements _i3.NewsHttpClient {
 
   @override
   _i4.Future<_i2.GetNewsResponseModel> getTopHeadlines(
-    String? country,
     String? apiKey,
+    String? category,
+    String? country,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
           #getTopHeadlines,
           [
-            country,
             apiKey,
+            category,
+            country,
           ],
         ),
         returnValue: _i4.Future<_i2.GetNewsResponseModel>.value(
@@ -63,8 +65,9 @@ class MockNewsHttpClient extends _i1.Mock implements _i3.NewsHttpClient {
           Invocation.method(
             #getTopHeadlines,
             [
-              country,
               apiKey,
+              category,
+              country,
             ],
           ),
         )),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:stock_news_flutter/core/consts/app_consts.dart';
-import 'package:stock_news_flutter/core/theme/app_colors.dart';
+import 'package:stock_news_flutter/core/theme/colors.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({super.key});
@@ -10,7 +10,7 @@ class SideMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     final tabState = TabPage.of(context);
     return Drawer(
-      backgroundColor: AppColors.secondaryColor,
+      backgroundColor: SNColors.darkBlue,
       child: Column(
         children: [
           DrawerHeader(
@@ -22,9 +22,7 @@ class SideMenu extends StatelessWidget {
           ),
           _DrawerListTile(
             title: AppConsts.home,
-            press: () {
-              tabState.controller.animateTo(0);
-            },
+            press: () => tabState.controller.animateTo(0),
             icon: const IconButton(
               onPressed: null,
               icon: Icon(Icons.home, color: Colors.white),
@@ -32,9 +30,7 @@ class SideMenu extends StatelessWidget {
           ),
           _DrawerListTile(
             title: AppConsts.tracker,
-            press: () {
-              tabState.controller.animateTo(1);
-            },
+            press: () => tabState.controller.animateTo(1),
             icon: const IconButton(
               onPressed: null,
               icon: Icon(Icons.ssid_chart_rounded, color: Colors.white),
@@ -42,9 +38,7 @@ class SideMenu extends StatelessWidget {
           ),
           _DrawerListTile(
             title: AppConsts.settings,
-            press: () {
-              tabState.controller.animateTo(2);
-            },
+            press: () => tabState.controller.animateTo(2),
             icon: const IconButton(
               onPressed: null,
               icon: Icon(Icons.settings, color: Colors.white),
@@ -76,7 +70,10 @@ class _DrawerListTile extends StatelessWidget {
       leading: icon,
       title: Text(
         title,
-        style: const TextStyle(color: Colors.white54),
+        style: Theme.of(context)
+            .textTheme
+            .bodyLarge
+            ?.copyWith(color: Colors.white),
       ),
     );
   }

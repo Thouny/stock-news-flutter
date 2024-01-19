@@ -22,13 +22,15 @@ class _NewsHttpClient implements NewsHttpClient {
 
   @override
   Future<GetNewsResponseModel> getTopHeadlines(
-    String country,
     String apiKey,
+    String category,
+    String country,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
-      r'country': country,
       r'apiKey': apiKey,
+      r'category': category,
+      r'country': country,
     };
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
