@@ -7,6 +7,7 @@ import 'package:stock_news_flutter/core/controller/menu_controller.dart'
     as controller;
 import 'package:stock_news_flutter/core/enums/storage_keys.dart';
 import 'package:stock_news_flutter/core/storage/secure_storage.dart';
+import 'package:stock_news_flutter/core/theme/theme.dart';
 import 'package:stock_news_flutter/di/container.dart';
 import 'package:stock_news_flutter/routing/page_routes.dart';
 
@@ -61,7 +62,7 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: AppConsts.appName,
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: SNTheme.appTheme,
       routeInformationParser: const RoutemasterParser(),
       routerDelegate: routemaster,
       builder: (context, child) => MediaQuery(
