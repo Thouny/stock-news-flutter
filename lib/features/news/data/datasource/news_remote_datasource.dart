@@ -23,7 +23,7 @@ class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
     final key = StorageKeys.newsApiKey.name;
     final apiKey = await _storage.read<String>(key) ?? "";
     if (apiKey.isEmpty) throw const StorageException("API key not found");
-    final response = await _client.getTopHeadlines('au', apiKey);
+    final response = await _client.getTopHeadlines(apiKey, 'business', 'au');
     if (response.status != "ok") {
       throw const ServerException('Server responded with an error code');
     }

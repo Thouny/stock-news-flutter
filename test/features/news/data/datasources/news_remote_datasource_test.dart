@@ -48,7 +48,7 @@ void main() {
         () async {
       // arrange
       when(mockStorage.read<String>(tKey)).thenAnswer((_) async => tApiKey);
-      when(mockClient.getTopHeadlines('au', tApiKey)).thenThrow(
+      when(mockClient.getTopHeadlines(tApiKey, 'business', 'au')).thenThrow(
         const ServerException('Server responded with an error code'),
       );
       // act
@@ -60,7 +60,8 @@ void main() {
     test('should throw [Exception] when an unexpected error occurs', () async {
       // arrange
       when(mockStorage.read<String>(tKey)).thenAnswer((_) async => tApiKey);
-      when(mockClient.getTopHeadlines('au', tApiKey)).thenThrow(Exception());
+      when(mockClient.getTopHeadlines(tApiKey, 'business', 'au'))
+          .thenThrow(Exception());
       // act
       final call = dataSource.getTopHeadlines;
       // assert
@@ -71,13 +72,13 @@ void main() {
         () async {
       // arrange
       when(mockStorage.read<String>(tKey)).thenAnswer((_) async => tApiKey);
-      when(mockClient.getTopHeadlines('au', tApiKey))
+      when(mockClient.getTopHeadlines(tApiKey, 'business', 'au'))
           .thenAnswer((_) async => tResponse);
       // act
       final result = await dataSource.getTopHeadlines();
       // assert
       verify(mockStorage.read<String>(tKey));
-      when(mockClient.getTopHeadlines('au', tApiKey));
+      when(mockClient.getTopHeadlines(tApiKey, 'business', 'au'));
       expect(result, tResponse.articles);
     });
   });
