@@ -8,14 +8,16 @@ import 'package:stock_news_flutter/core/storage/secure_storage.dart';
 import 'package:stock_news_flutter/core/utils/clock.dart';
 import 'package:stock_news_flutter/core/utils/link_handler.dart';
 
-import 'user.dart' as user;
 import 'news.dart' as news;
+import 'stock.dart' as stock;
+import 'user.dart' as user;
 
 final serviceLocator = GetIt.instance;
 
 Future<void> init() async {
   /* Features =============================================================== */
   news.init(serviceLocator);
+  stock.init(serviceLocator);
   user.init(serviceLocator);
   /* ======================================================================== */
   /* Core =================================================================== */
