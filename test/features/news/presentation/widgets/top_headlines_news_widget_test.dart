@@ -6,6 +6,7 @@ import 'package:get_it/get_it.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:stock_news_flutter/core/utils/link_handler.dart';
+import 'package:stock_news_flutter/features/news/domain/entities/news_entity.dart';
 import 'package:stock_news_flutter/features/news/presentation/blocs/news_bloc.dart';
 import 'package:stock_news_flutter/features/news/presentation/widgets/top_headlines_news_widget.dart';
 
@@ -18,16 +19,16 @@ void main() {
   late MockNewsBloc mockNewsBloc;
   late MockLinkHandler mockLinkHandler;
 
-  // const tNewsEntity = NewsEntity(
-  //   title: 'title',
-  //   description: 'description',
-  //   url: 'url',
-  //   urlToImage: 'urlToImage',
-  //   publishedAt: '',
-  //   content: 'content',
-  //   source: Source(id: 'id', name: 'name'),
-  //   author: '',
-  // );
+  const tNewsEntity = NewsEntity(
+    title: 'title',
+    description: 'description',
+    url: 'url',
+    urlToImage: '',
+    publishedAt: '',
+    content: 'content',
+    source: Source(id: 'id', name: 'name'),
+    author: '',
+  );
 
   const keyPrefix = TopHealinesNewsWidget.keyPrefix;
 
@@ -43,28 +44,28 @@ void main() {
     GetIt.I.reset();
   });
 
-  // group('LoadedNewsState', () {
-  //   testWidgets('should render a [ListView] widget', (tester) async {
-  //     // arrange
-  //     whenListen(
-  //       mockNewsBloc,
-  //       Stream.value(const LoadedNewsState(news: [tNewsEntity])),
-  //       initialState: const InitialNewsState(),
-  //     );
+  group('LoadedNewsState', () {
+    testWidgets('should render a [GridView] widget', (tester) async {
+      // arrange
+      whenListen(
+        mockNewsBloc,
+        Stream.value(const LoadedNewsState(news: [tNewsEntity])),
+        initialState: const InitialNewsState(),
+      );
 
-  //     await mockNetworkImagesFor(() => tester.pumpWidget(_WidgetWrapper(
-  //           newsBloc: mockNewsBloc,
-  //           linkHandler: mockLinkHandler,
-  //         )));
+      await tester.pumpWidget(_WidgetWrapper(
+        newsBloc: mockNewsBloc,
+        linkHandler: mockLinkHandler,
+      ));
 
-  //     await tester.pumpAndSettle();
-  //     const listViewKey = Key('$keyPrefix-ListView');
-  //     // act
-  //     final listView = find.byKey(listViewKey);
-  //     // assert
-  //     expect(listView, findsOneWidget);
-  //   });
-  // });
+      await tester.pumpAndSettle();
+      const gridViewKey = Key('$keyPrefix-GridView');
+      // act
+      final gridView = find.byKey(gridViewKey);
+      // assert
+      expect(gridView, findsOneWidget);
+    });
+  });
 
   group('ErrorNewsState', () {
     testWidgets('should render [Text] widget', (tester) async {

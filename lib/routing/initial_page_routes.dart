@@ -4,6 +4,6 @@ class InitialPageRoutes {
   static const root = '/';
   static const empty = '/empty';
   static const home = '/home';
-  static const tracker = '/tracker';
+  static const stocks = '/stocks';
   static const settings = '/settings';
 }

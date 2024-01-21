@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stock_news_flutter/core/theme/padding.dart';
 import 'package:stock_news_flutter/core/utils/link_handler.dart';
 import 'package:stock_news_flutter/core/widgets/app_page.dart';
 import 'package:stock_news_flutter/core/widgets/layout_delegate.dart';
 import 'package:stock_news_flutter/di/container.dart';
-import 'package:stock_news_flutter/features/news/presentation/bloc/news_bloc.dart';
+import 'package:stock_news_flutter/features/news/presentation/blocs/news_bloc.dart';
 import 'package:stock_news_flutter/features/news/presentation/widgets/top_headlines_news_widget.dart';
 import 'package:stock_news_flutter/features/user/presentation/blocs/greeting_bloc.dart';
 import 'package:stock_news_flutter/features/user/presentation/widgets/greeting_widget.dart';
@@ -52,6 +53,8 @@ class HomePage extends AppPage<void> {
 }
 
 class HomeView extends StatelessWidget {
+  static const String keyPrefix = 'HomeView';
+
   const HomeView({super.key});
 
   @override
@@ -59,14 +62,15 @@ class HomeView extends StatelessWidget {
     return LayoutDelegate(
       child: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(PaddingValues.small),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const GreetingWidget(),
-              const SizedBox(height: 16),
+              const GreetingWidget(key: Key('$keyPrefix-GreetingWidget')),
+              const SizedBox(height: PaddingValues.small),
               Expanded(
                 child: TopHealinesNewsWidget(
+                  key: const Key('$keyPrefix-TopHealinesNewsWidget'),
                   linkHandler: serviceLocator<LinkHandler>(),
                 ),
               ),

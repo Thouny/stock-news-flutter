@@ -52,7 +52,6 @@ class MockFinancialModelingPrepHttpClient extends _i1.Mock
     String? symbol,
     String? from,
     String? to,
-    String? serieType,
     String? apiKey,
   ) =>
           (super.noSuchMethod(
@@ -62,7 +61,6 @@ class MockFinancialModelingPrepHttpClient extends _i1.Mock
                 symbol,
                 from,
                 to,
-                serieType,
                 apiKey,
               ],
             ),
@@ -77,7 +75,6 @@ class MockFinancialModelingPrepHttpClient extends _i1.Mock
                   symbol,
                   from,
                   to,
-                  serieType,
                   apiKey,
                 ],
               ),

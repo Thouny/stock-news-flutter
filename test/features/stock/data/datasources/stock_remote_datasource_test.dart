@@ -58,7 +58,6 @@ void main() {
         tSymbol,
         tFrom.toDateString,
         tTo.toDateString,
-        'line',
         tApiKey,
       )).thenThrow(
         const ServerException('Server responded with an error code'),
@@ -76,7 +75,6 @@ void main() {
         tSymbol,
         tFrom.toDateString,
         tTo.toDateString,
-        'line',
         tApiKey,
       )).thenThrow(Exception());
       // act
@@ -93,7 +91,6 @@ void main() {
         tSymbol,
         tFrom.toDateString,
         tTo.toDateString,
-        'line',
         tApiKey,
       )).thenAnswer((_) async => HttpResponse(tResponse,
           Response(requestOptions: RequestOptions(), statusCode: 200)));

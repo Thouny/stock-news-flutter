@@ -3,7 +3,7 @@ import 'package:stock_news_flutter/core/widgets/root_page_tab_scaffold.dart';
 import 'package:stock_news_flutter/pages/home/home_page.dart';
 import 'package:stock_news_flutter/pages/root/empty_page.dart';
 import 'package:stock_news_flutter/pages/setttings/settings_page.dart';
-import 'package:stock_news_flutter/pages/tracker/tracker_page.dart';
+import 'package:stock_news_flutter/pages/stocks/stocks_page.dart';
 import 'package:stock_news_flutter/routing/initial_page_routes.dart';
 import 'package:stock_news_flutter/routing/routes.dart';
 
@@ -35,10 +35,10 @@ class PageRoutes {
       Routes.home: (_) => HomePage(),
 
       /// **********************************************************************
-      /// home
+      /// stocks
       /// **********************************************************************
-      // `/home`
-      Routes.tracker: (_) => TrackerPage(),
+      // `/stocks`
+      Routes.tracker: (_) => StocksPage(),
 
       /// **********************************************************************
       /// settings
