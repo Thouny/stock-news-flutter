@@ -26,14 +26,12 @@ class _FinancialModelingPrepHttpClient
     String symbol,
     String from,
     String to,
-    String serieType,
     String apiKey,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'from': from,
       r'to': to,
-      r'serietype': serieType,
       r'apikey': apiKey,
     };
     final _headers = <String, dynamic>{};
@@ -46,7 +44,7 @@ class _FinancialModelingPrepHttpClient
     )
             .compose(
               _dio.options,
-              '/historical-price-full/${symbol}}',
+              '/historical-price-full/${symbol}',
               queryParameters: queryParameters,
               data: _data,
             )

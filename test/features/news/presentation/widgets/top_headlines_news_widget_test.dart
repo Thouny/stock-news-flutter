@@ -6,7 +6,7 @@ import 'package:get_it/get_it.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:stock_news_flutter/core/utils/link_handler.dart';
-import 'package:stock_news_flutter/features/news/presentation/bloc/news_bloc.dart';
+import 'package:stock_news_flutter/features/news/presentation/blocs/news_bloc.dart';
 import 'package:stock_news_flutter/features/news/presentation/widgets/top_headlines_news_widget.dart';
 
 import 'top_headlines_news_widget_test.mocks.dart';

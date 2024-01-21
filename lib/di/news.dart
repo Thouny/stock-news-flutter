@@ -3,7 +3,7 @@ import 'package:stock_news_flutter/features/news/data/datasource/news_remote_dat
 import 'package:stock_news_flutter/features/news/data/repositories/news_repository_impl.dart';
 import 'package:stock_news_flutter/features/news/domain/repositories/news_repository.dart';
 import 'package:stock_news_flutter/features/news/domain/usecases/get_top_headlines_usecase.dart';
-import 'package:stock_news_flutter/features/news/presentation/bloc/news_bloc.dart';
+import 'package:stock_news_flutter/features/news/presentation/blocs/news_bloc.dart';
 
 void init(GetIt serviceLocator) {
   // data sources

@@ -9,12 +9,11 @@ abstract class FinancialModelingPrepHttpClient {
   factory FinancialModelingPrepHttpClient(Dio dio, {String baseUrl}) =
       _FinancialModelingPrepHttpClient;
 
-  @GET('/historical-price-full/{symbol}}')
+  @GET('/historical-price-full/{symbol}')
   Future<HttpResponse<GetHistoricalStockResponseModel>> getHistoricalStockData(
     @Path('symbol') String symbol,
     @Query('from') String from,
     @Query('to') String to,
-    @Query('serietype') String serieType,
     @Query('apikey') String apiKey,
   );
 }

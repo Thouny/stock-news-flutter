@@ -3,6 +3,7 @@ import 'package:stock_news_flutter/features/stock/data/datasources/stock_remote_
 import 'package:stock_news_flutter/features/stock/data/repositories/stock_repository_impl.dart';
 import 'package:stock_news_flutter/features/stock/domain/repositories/stock_repository.dart';
 import 'package:stock_news_flutter/features/stock/domain/usecases/get_historical_stock.dart';
+import 'package:stock_news_flutter/features/stock/presentation/blocs/stock_bloc.dart';
 
 void init(GetIt serviceLocator) {
   // data sources
@@ -22,5 +23,9 @@ void init(GetIt serviceLocator) {
   // usecases
   serviceLocator.registerLazySingleton<GetHistoricalStockUsecase>(() {
     return GetHistoricalStockUsecase(repository: serviceLocator());
+  });
+  // blocs
+  serviceLocator.registerFactory<StockBloc>(() {
+    return StockBloc(getHistoricalStockUsecase: serviceLocator());
   });
 }

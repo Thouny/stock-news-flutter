@@ -37,7 +37,6 @@ class StockRemoteDataSourceImpl implements StockRemoteDataSource {
       symbol,
       from.toDateString,
       to.toDateString,
-      'line',
       apiKey,
     );
     if (response.response.statusCode != 200) {
