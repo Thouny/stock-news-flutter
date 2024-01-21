@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/annotations.dart';
 import 'package:stock_news_flutter/core/utils/link_handler.dart';
-import 'package:stock_news_flutter/features/news/presentation/bloc/news_bloc.dart';
+import 'package:stock_news_flutter/features/news/presentation/blocs/news_bloc.dart';
 import 'package:stock_news_flutter/features/user/presentation/blocs/greeting_bloc.dart';
 import 'package:stock_news_flutter/features/user/presentation/widgets/greeting_widget.dart';
 import 'package:stock_news_flutter/pages/home/home_page.dart';

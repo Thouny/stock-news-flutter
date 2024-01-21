@@ -8,6 +8,7 @@ class SNColors {
   static const lightBlue = Color(0xFFA8DADC);
   static const white = Color(0xFFf1fAEE);
   static const red = Color(0xFFE63946);
+  static const green = Colors.green;
 
   static const MaterialColor grey = MaterialColor(
     0xFFE9E9E9,

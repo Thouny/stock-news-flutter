@@ -6,7 +6,7 @@ import 'package:mockito/mockito.dart';
 import 'package:stock_news_flutter/core/error/failures.dart';
 import 'package:stock_news_flutter/features/news/domain/entities/news_entity.dart';
 import 'package:stock_news_flutter/features/news/domain/usecases/get_top_headlines_usecase.dart';
-import 'package:stock_news_flutter/features/news/presentation/bloc/news_bloc.dart';
+import 'package:stock_news_flutter/features/news/presentation/blocs/news_bloc.dart';
 
 import 'news_bloc_test.mocks.dart';
 

@@ -6,7 +6,7 @@ import 'package:stock_news_flutter/core/theme/padding.dart';
 import 'package:stock_news_flutter/core/utils/link_handler.dart';
 import 'package:stock_news_flutter/core/utils/responsive_utils.dart';
 import 'package:stock_news_flutter/features/news/domain/entities/news_entity.dart';
-import 'package:stock_news_flutter/features/news/presentation/bloc/news_bloc.dart';
+import 'package:stock_news_flutter/features/news/presentation/blocs/news_bloc.dart';
 
 class TopHealinesNewsWidget extends StatelessWidget {
   static const keyPrefix = 'TopHeadlinesNews';
@@ -88,7 +88,7 @@ class _NewsCard extends StatelessWidget {
   final NewsEntity news;
   final VoidCallback? onTap;
 
-  const _NewsCard({super.key, required this.news, required this.onTap});
+  const _NewsCard({required this.news, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
