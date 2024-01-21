@@ -22,7 +22,7 @@ class _FinancialModelingPrepHttpClient
   String? baseUrl;
 
   @override
-  Future<GetHistoricalStockResponseModel> getHistoricalStockData(
+  Future<HttpResponse<GetHistoricalStockResponseModel>> getHistoricalStockData(
     String symbol,
     String from,
     String to,
@@ -39,7 +39,7 @@ class _FinancialModelingPrepHttpClient
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<GetHistoricalStockResponseModel>(Options(
+        _setStreamType<HttpResponse<GetHistoricalStockResponseModel>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -56,7 +56,8 @@ class _FinancialModelingPrepHttpClient
               baseUrl,
             ))));
     final value = GetHistoricalStockResponseModel.fromJson(_result.data!);
-    return value;
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

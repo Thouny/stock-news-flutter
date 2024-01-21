@@ -11,7 +11,7 @@ GetHistoricalStockResponseModel _$GetHistoricalStockResponseModelFromJson(
     GetHistoricalStockResponseModel(
       symbol: json['symbol'] as String,
       historical: (json['historical'] as List<dynamic>)
-          .map((e) => HistoricalData.fromJson(e as Map<String, dynamic>))
+          .map((e) => HistoricalDataModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -22,8 +22,8 @@ Map<String, dynamic> _$GetHistoricalStockResponseModelToJson(
       'historical': instance.historical,
     };
 
-HistoricalData _$HistoricalDataFromJson(Map<String, dynamic> json) =>
-    HistoricalData(
+HistoricalDataModel _$HistoricalDataModelFromJson(Map<String, dynamic> json) =>
+    HistoricalDataModel(
       date: json['date'] as String,
       open: (json['open'] as num).toDouble(),
       high: (json['high'] as num).toDouble(),
@@ -39,7 +39,8 @@ HistoricalData _$HistoricalDataFromJson(Map<String, dynamic> json) =>
       changeOverTime: (json['changeOverTime'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$HistoricalDataToJson(HistoricalData instance) =>
+Map<String, dynamic> _$HistoricalDataModelToJson(
+        HistoricalDataModel instance) =>
     <String, dynamic>{
       'date': instance.date,
       'open': instance.open,

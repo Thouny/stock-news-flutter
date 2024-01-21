@@ -10,7 +10,7 @@ abstract class FinancialModelingPrepHttpClient {
       _FinancialModelingPrepHttpClient;
 
   @GET('/historical-price-full/{symbol}}')
-  Future<GetHistoricalStockResponseModel> getHistoricalStockData(
+  Future<HttpResponse<GetHistoricalStockResponseModel>> getHistoricalStockData(
     @Path('symbol') String symbol,
     @Query('from') String from,
     @Query('to') String to,

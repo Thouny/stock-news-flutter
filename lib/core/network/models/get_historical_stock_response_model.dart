@@ -1,11 +1,12 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:stock_news_flutter/features/stock/domain/entities/stock_entity.dart';
 
 part 'get_historical_stock_response_model.g.dart';
 
 @JsonSerializable()
 class GetHistoricalStockResponseModel {
   final String symbol;
-  final List<HistoricalData> historical;
+  final List<HistoricalDataModel> historical;
 
   const GetHistoricalStockResponseModel({
     required this.symbol,
@@ -20,7 +21,7 @@ class GetHistoricalStockResponseModel {
 }
 
 @JsonSerializable()
-class HistoricalData {
+class HistoricalDataModel {
   final String date;
   final double open;
   final double high;
@@ -35,7 +36,7 @@ class HistoricalData {
   final String label;
   final double changeOverTime;
 
-  HistoricalData({
+  const HistoricalDataModel({
     required this.date,
     required this.open,
     required this.high,
@@ -51,8 +52,26 @@ class HistoricalData {
     required this.changeOverTime,
   });
 
-  factory HistoricalData.fromJson(Map<String, dynamic> json) =>
-      _$HistoricalDataFromJson(json);
+  factory HistoricalDataModel.fromJson(Map<String, dynamic> json) =>
+      _$HistoricalDataModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$HistoricalDataToJson(this);
+  Map<String, dynamic> toJson() => _$HistoricalDataModelToJson(this);
+
+  StockEntity get toEntity {
+    return StockEntity(
+      date: DateTime.parse(date),
+      open: open,
+      high: high,
+      low: low,
+      close: close,
+      adjClose: adjClose,
+      volume: volume,
+      unadjustedVolume: unadjustedVolume,
+      change: change,
+      changePercent: changePercent,
+      vwap: vwap,
+      label: label,
+      changeOverTime: changeOverTime,
+    );
+  }
 }

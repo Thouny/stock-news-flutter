@@ -78,7 +78,6 @@ void main() {
       final result = await dataSource.getTopHeadlines();
       // assert
       verify(mockStorage.read<String>(tKey));
-      when(mockClient.getTopHeadlines(tApiKey, 'business', 'au'));
       expect(result, tResponse.articles);
     });
   });
