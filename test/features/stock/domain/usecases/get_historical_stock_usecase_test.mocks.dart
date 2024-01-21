@@ -45,20 +45,32 @@ class MockStockRepository extends _i1.Mock implements _i3.StockRepository {
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, List<_i6.StockEntity>>>
-      getHistoricalStock() => (super.noSuchMethod(
-            Invocation.method(
-              #getHistoricalStock,
-              [],
-            ),
-            returnValue: _i4
-                .Future<_i2.Either<_i5.Failure, List<_i6.StockEntity>>>.value(
+  _i4.Future<_i2.Either<_i5.Failure, List<_i6.StockEntity>>> getHistoricalStock(
+    String? symbol,
+    DateTime? from,
+    DateTime? to,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getHistoricalStock,
+          [
+            symbol,
+            from,
+            to,
+          ],
+        ),
+        returnValue:
+            _i4.Future<_i2.Either<_i5.Failure, List<_i6.StockEntity>>>.value(
                 _FakeEither_0<_i5.Failure, List<_i6.StockEntity>>(
-              this,
-              Invocation.method(
-                #getHistoricalStock,
-                [],
-              ),
-            )),
-          ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.StockEntity>>>);
+          this,
+          Invocation.method(
+            #getHistoricalStock,
+            [
+              symbol,
+              from,
+              to,
+            ],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.StockEntity>>>);
 }

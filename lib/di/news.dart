@@ -16,8 +16,8 @@ void init(GetIt serviceLocator) {
   // repositories
   serviceLocator.registerLazySingleton<NewsRepository>(() {
     return NewsRepositoryImpl(
-      remoteDataSource: serviceLocator(),
       connectionService: serviceLocator(),
+      remoteDataSource: serviceLocator(),
     );
   });
   // usecases

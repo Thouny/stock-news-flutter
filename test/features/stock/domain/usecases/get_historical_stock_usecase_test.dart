@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:stock_news_flutter/core/usercase/usecase.dart';
 import 'package:stock_news_flutter/features/stock/domain/entities/stock_entity.dart';
 import 'package:stock_news_flutter/features/stock/domain/repositories/stock_repository.dart';
 import 'package:stock_news_flutter/features/stock/domain/usecases/get_historical_stock.dart';
@@ -32,6 +31,12 @@ void main() {
     )
   ];
 
+  final tGetHistoricalStockParams = GetHistoricalStockParams(
+    symbol: 'AAPL',
+    from: DateTime(2024, 01, 18),
+    to: DateTime(2024, 01, 18),
+  );
+
   setUp(() {
     mockStockRepository = MockStockRepository();
     usecase = GetHistoricalStockUsecase(repository: mockStockRepository);
@@ -43,13 +48,20 @@ void main() {
 
   test('should forward the call to the repository', () async {
     // arrange
-    when(mockStockRepository.getHistoricalStock())
-        .thenAnswer((_) async => Right(tStockEntities));
+    when(mockStockRepository.getHistoricalStock(
+      tGetHistoricalStockParams.symbol,
+      tGetHistoricalStockParams.from,
+      tGetHistoricalStockParams.to,
+    )).thenAnswer((_) async => Right(tStockEntities));
     // act
-    final result = await usecase(const NoParams());
+    final result = await usecase(tGetHistoricalStockParams);
     // assert
     expect(result, equals(Right(tStockEntities)));
-    verify(mockStockRepository.getHistoricalStock());
+    verify(mockStockRepository.getHistoricalStock(
+      tGetHistoricalStockParams.symbol,
+      tGetHistoricalStockParams.from,
+      tGetHistoricalStockParams.to,
+    ));
     verifyNoMoreInteractions(mockStockRepository);
   });
 }

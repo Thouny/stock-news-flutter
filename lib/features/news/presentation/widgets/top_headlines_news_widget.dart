@@ -88,7 +88,7 @@ class _NewsCard extends StatelessWidget {
   final NewsEntity news;
   final VoidCallback? onTap;
 
-  const _NewsCard({super.key, required this.news, required this.onTap});
+  const _NewsCard({required this.news, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
