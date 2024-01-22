@@ -60,10 +60,16 @@ void main() {
 
       await tester.pumpAndSettle();
       const gridViewKey = Key('$keyPrefix-GridView');
+      const errorKey = Key('$keyPrefix-ErrorText');
+      const loadingIndicatorKey = Key('$keyPrefix-LoadingIndicator');
       // act
       final gridView = find.byKey(gridViewKey);
+      final errorText = find.byKey(errorKey);
+      final loadingIndicator = find.byKey(loadingIndicatorKey);
       // assert
       expect(gridView, findsOneWidget);
+      expect(errorText, findsNothing);
+      expect(loadingIndicator, findsNothing);
     });
   });
 
@@ -80,11 +86,17 @@ void main() {
         linkHandler: mockLinkHandler,
       ));
       await tester.pumpAndSettle();
-      const textKey = Key('$keyPrefix-ErrorText');
+      const gridViewKey = Key('$keyPrefix-GridView');
+      const errorKey = Key('$keyPrefix-ErrorText');
+      const loadingIndicatorKey = Key('$keyPrefix-LoadingIndicator');
       // act
-      final text = find.byKey(textKey);
+      final gridView = find.byKey(gridViewKey);
+      final errorText = find.byKey(errorKey);
+      final loadingIndicator = find.byKey(loadingIndicatorKey);
       // assert
-      expect(text, findsOneWidget);
+      expect(gridView, findsNothing);
+      expect(errorText, findsOneWidget);
+      expect(loadingIndicator, findsNothing);
     });
   });
 
@@ -100,10 +112,16 @@ void main() {
         newsBloc: mockNewsBloc,
         linkHandler: mockLinkHandler,
       ));
+      const gridViewKey = Key('$keyPrefix-GridView');
+      const errorKey = Key('$keyPrefix-ErrorText');
       const loadingIndicatorKey = Key('$keyPrefix-LoadingIndicator');
       // act
+      final gridView = find.byKey(gridViewKey);
+      final errorText = find.byKey(errorKey);
       final loadingIndicator = find.byKey(loadingIndicatorKey);
       // assert
+      expect(gridView, findsNothing);
+      expect(errorText, findsNothing);
       expect(loadingIndicator, findsOneWidget);
     });
   });

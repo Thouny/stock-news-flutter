@@ -7,7 +7,7 @@ import 'package:stock_news_flutter/core/consts/stock_consts.dart';
 import 'package:stock_news_flutter/features/stock/domain/entities/company_entity.dart';
 import 'package:stock_news_flutter/features/stock/domain/entities/stock_entity.dart';
 import 'package:stock_news_flutter/features/stock/presentation/blocs/stock_bloc.dart';
-import 'package:stock_news_flutter/features/stock/presentation/widgets/stock_overview_card.dart';
+import 'package:stock_news_flutter/features/stock/presentation/widgets/stock_detail_bottom_sheet.dart';
 
 class MockStockBloc extends MockBloc<StockEvent, StockState>
     implements StockBloc {}
@@ -15,7 +15,7 @@ class MockStockBloc extends MockBloc<StockEvent, StockState>
 void main() {
   late MockStockBloc mockStockBloc;
 
-  const keyPrefix = StockOverviewCardBuilder.keyPrefix;
+  const keyPrefix = StockDetailBottomSheetBuilder.keyPrefix;
 
   final tStockEntities = [
     StockEntity(
@@ -32,6 +32,21 @@ void main() {
       vwap: 187.93,
       label: "January 18, 24",
       changeOverTime: 0.0136,
+    ),
+    StockEntity(
+      date: DateTime(2024, 01, 19),
+      open: 186.09,
+      high: 189.14,
+      low: 185.83,
+      close: 188.63,
+      adjClose: 188.63,
+      volume: 77500694,
+      unadjustedVolume: 77082288,
+      change: 2.54,
+      changePercent: 1.36,
+      vwap: 187.93,
+      label: "January 19, 24",
+      changeOverTime: 0.0136,
     )
   ];
 
@@ -46,7 +61,7 @@ void main() {
   });
 
   group('LoadedStockState', () {
-    testWidgets('should render a [Card] widget', (tester) async {
+    testWidgets('should render a [StockDetailWidget] widget', (tester) async {
       // arrange
       whenListen(
         mockStockBloc,
@@ -60,11 +75,17 @@ void main() {
         company: StockConsts.companyWatchlist.first,
       ));
       await tester.pumpAndSettle();
-      const gridViewKey = Key('$keyPrefix-Card');
+      const stockDetailKey = Key('$keyPrefix-StockDetailWidget');
+      const errortKey = Key('$keyPrefix-ErrorText');
+      const loadingIndicatorKey = Key('$keyPrefix-LoadingIndicator');
       // act
-      final gridView = find.byKey(gridViewKey);
+      final stockDetail = find.byKey(stockDetailKey);
+      final errorText = find.byKey(errortKey);
+      final loadingIndicator = find.byKey(loadingIndicatorKey);
       // assert
-      expect(gridView, findsOneWidget);
+      expect(stockDetail, findsOneWidget);
+      expect(errorText, findsNothing);
+      expect(loadingIndicator, findsNothing);
     });
   });
 
@@ -81,11 +102,17 @@ void main() {
         company: StockConsts.companyWatchlist.first,
       ));
       await tester.pumpAndSettle();
-      const textKey = Key('$keyPrefix-ErrorText');
+      const stockDetailKey = Key('$keyPrefix-StockDetailWidget');
+      const errortKey = Key('$keyPrefix-ErrorText');
+      const loadingIndicatorKey = Key('$keyPrefix-LoadingIndicator');
       // act
-      final text = find.byKey(textKey);
+      final stockDetail = find.byKey(stockDetailKey);
+      final errorText = find.byKey(errortKey);
+      final loadingIndicator = find.byKey(loadingIndicatorKey);
       // assert
-      expect(text, findsOneWidget);
+      expect(stockDetail, findsNothing);
+      expect(errorText, findsOneWidget);
+      expect(loadingIndicator, findsNothing);
     });
   });
 
@@ -101,10 +128,16 @@ void main() {
         stockBloc: mockStockBloc,
         company: StockConsts.companyWatchlist.first,
       ));
+      const stockDetailKey = Key('$keyPrefix-StockDetailWidget');
+      const errortKey = Key('$keyPrefix-ErrorText');
       const loadingIndicatorKey = Key('$keyPrefix-LoadingIndicator');
       // act
+      final stockDetail = find.byKey(stockDetailKey);
+      final errorText = find.byKey(errortKey);
       final loadingIndicator = find.byKey(loadingIndicatorKey);
       // assert
+      expect(stockDetail, findsNothing);
+      expect(errorText, findsNothing);
       expect(loadingIndicator, findsOneWidget);
     });
   });
@@ -122,7 +155,7 @@ class _WidgetWrapper extends StatelessWidget {
       home: Scaffold(
         body: BlocProvider(
           create: (_) => stockBloc,
-          child: StockOverviewCardBuilder(company: company),
+          child: const StockDetailBottomSheetBuilder(),
         ),
       ),
     );

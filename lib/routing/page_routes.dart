@@ -23,7 +23,7 @@ class PageRoutes {
             child: RootPageTabScaffold(),
             paths: [
               Routes.home,
-              Routes.tracker,
+              Routes.stocks,
               Routes.settings,
             ],
           ),
@@ -38,7 +38,7 @@ class PageRoutes {
       /// stocks
       /// **********************************************************************
       // `/stocks`
-      Routes.tracker: (_) => StocksPage(),
+      Routes.stocks: (_) => StocksPage(),
 
       /// **********************************************************************
       /// settings

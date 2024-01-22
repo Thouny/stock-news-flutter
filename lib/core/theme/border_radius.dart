@@ -1,11 +1,11 @@
 class BorderRadiusValues {
   const BorderRadiusValues._();
 
-  static const double xxSmallBorderRadius = 2;
-  static const double xSmallBorderRadius = 4;
-  static const double smallBorderRadius = 8;
-  static const double mediumBorderRadius = 10;
-  static const double largeBorderRadius = 12;
-  static const double xLargeBorderRadius = 16;
-  static const double xxLargeBorderRadius = 22;
+  static const double xxSmall = 2;
+  static const double xSmall = 4;
+  static const double small = 8;
+  static const double medium = 10;
+  static const double large = 12;
+  static const double xLarge = 16;
+  static const double xxLarge = 22;
 }

@@ -38,8 +38,10 @@ void main() {
       const greetingTextKey = Key('$keyPrefix-Text');
       // act
       final greetingText = find.byKey(greetingTextKey);
+      final sizedBox = find.byType(SizedBox);
       // assert
       expect(greetingText, findsOneWidget);
+      expect(sizedBox, findsNothing);
     });
   });
 
@@ -53,9 +55,12 @@ void main() {
       );
       await tester.pumpWidget(_WidgetWrapper(greetingBloc: mockGreetingBloc));
       await tester.pumpAndSettle();
+      const greetingTextKey = Key('$keyPrefix-Text');
       // act
+      final greetingText = find.byKey(greetingTextKey);
       final sizedBox = find.byType(SizedBox);
       // assert
+      expect(greetingText, findsNothing);
       expect(sizedBox, findsOneWidget);
     });
   });
