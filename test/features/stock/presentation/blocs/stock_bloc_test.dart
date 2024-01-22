@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:stock_news_flutter/core/consts/stock_consts.dart';
 import 'package:stock_news_flutter/core/error/failures.dart';
 import 'package:stock_news_flutter/features/stock/domain/entities/stock_entity.dart';
 import 'package:stock_news_flutter/features/stock/domain/usecases/get_historical_stock.dart';
@@ -53,13 +54,16 @@ void main() {
       },
       build: () => bloc,
       act: (bloc) => bloc.add(LoadHistoricalStockEvent(
-        symbol: 'AAPL',
+        company: StockConsts.companyWatchlist.first,
         from: DateTime(2024, 01, 18),
         to: DateTime(2024, 01, 18),
       )),
       expect: () => [
         const LoadingStockState(),
-        LoadedStockState(stocks: tStockEntities),
+        LoadedStockState(
+          company: StockConsts.companyWatchlist.first,
+          stocks: tStockEntities,
+        ),
       ],
     );
 
@@ -71,7 +75,7 @@ void main() {
       },
       build: () => bloc,
       act: (bloc) => bloc.add(LoadHistoricalStockEvent(
-        symbol: 'AAPL',
+        company: StockConsts.companyWatchlist.first,
         from: DateTime(2024, 01, 18),
         to: DateTime(2024, 01, 18),
       )),

@@ -6,7 +6,11 @@ StockNews is a mobile application for people to get the latest business and tech
 
 StockNews is a project developed as a practice to showcase my approach to coding.
 
-From a technical perspective, StockNews is implemented using Flutter. It relies on NewsAPI to get the latest news.
+From a technical perspective, StockNews is implemented using Flutter.
+
+It relies on [NewsAPI](https://newsapi.org/docs) to get the latest news
+
+And [FinancialModelingPrepAPI](https://site.financialmodelingprep.com/developer/docs) for stock market data
 
 Github is used to host the repositories.
 
@@ -19,8 +23,6 @@ Trello is used for managing the project. You can access it [here](https://trello
 3. Install dependencies: `flutter pub get`
 
 ## Usage
-
-### API Keys
 
 ### VSCode
 
@@ -36,7 +38,12 @@ Add env vars to a `launch.json` config:
       "type": "dart",
       "flutterMode": "debug",
       "program": "lib/main_dev.dart",
-      "args": ["--dart-define", "NEWS_API_KEY=insert_api_key_here"]
+      "args": [
+        "--dart-define",
+        "NEWS_API_KEY=insert_api_key_here",
+        "--dart-define",
+        "FINANCIAL_MODELING_PREP_API_KEY=insert_api_key_here"
+      ]
     },
     {
       "name": "UAT-debug",
@@ -44,7 +51,12 @@ Add env vars to a `launch.json` config:
       "type": "dart",
       "flutterMode": "debug",
       "program": "lib/main_uat.dart",
-      "args": ["--dart-define", "NEWS_API_KEY=insert_api_key_here"]
+      "args": [
+        "--dart-define",
+        "NEWS_API_KEY=insert_api_key_here",
+        "--dart-define",
+        "FINANCIAL_MODELING_PREP_API_KEY=insert_api_key_here"
+      ]
     }
   ]
 }
@@ -59,7 +71,7 @@ Add env vars to a `launch.json` config:
 Example to create a configuration in the dialog
 Name: `Dev-debug`
 Dart entrypoint: "SOURCE_PATH/lib/main_dev.dart"
-Additional run args: `--dart-define "NEWS_API_KEY=insert_api_key_here"`
+Additional run args: `--dart-define "NEWS_API_KEY=insert_api_key_here" --dart-define "FINANCIAL_MODELING_PREP_API_KEY=insert_api_key_here"`
 
 [Additional documentation can be found here](https://www.jetbrains.com/help/idea/run-debug-configuration.html).
 
@@ -67,8 +79,10 @@ Additional run args: `--dart-define "NEWS_API_KEY=insert_api_key_here"`
 
 This project architecture is based on the Clean Architecture.
 
+Features:
+
 - **News**: Provide business and tech news
-- **Stock**: Allows the user to see the stock market data
+- **Stock**: Allows the user to see companyies' stock data
 - **User**: Used to fetch the user from the device and greet them on the home screen.
 
 ## Contributing

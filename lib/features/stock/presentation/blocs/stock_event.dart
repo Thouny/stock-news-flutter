@@ -8,16 +8,16 @@ abstract class StockEvent extends Equatable {
 }
 
 class LoadHistoricalStockEvent extends StockEvent {
-  final String symbol;
+  final CompanyEntity company;
   final DateTime from;
   final DateTime to;
 
   const LoadHistoricalStockEvent({
-    required this.symbol,
+    required this.company,
     required this.from,
     required this.to,
   });
 
   @override
-  List<Object?> get props => [symbol, from, to];
+  List<Object?> get props => [company, from, to];
 }

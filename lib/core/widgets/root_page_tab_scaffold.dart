@@ -28,6 +28,12 @@ class _RootPageTabScaffoldState extends State<RootPageTabScaffold>
   }
 
   @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final tabState = TabPage.of(context);
     final currentPath = Routemaster.of(context).currentRoute.fullPath;

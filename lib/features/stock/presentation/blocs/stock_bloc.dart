@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stock_news_flutter/features/stock/domain/entities/company_entity.dart';
 import 'package:stock_news_flutter/features/stock/domain/entities/stock_entity.dart';
 import 'package:stock_news_flutter/features/stock/domain/usecases/get_historical_stock.dart';
 
@@ -24,7 +25,7 @@ class StockBloc extends Bloc<StockEvent, StockState> {
     emit(const LoadingStockState());
 
     final params = GetHistoricalStockParams(
-      symbol: event.symbol,
+      symbol: event.company.symbol,
       from: event.from,
       to: event.to,
     );
@@ -33,7 +34,9 @@ class StockBloc extends Bloc<StockEvent, StockState> {
       (failure) {
         emit(ErrorStockState(message: failure.message));
       },
-      (stocks) => emit(LoadedStockState(stocks: stocks)),
+      (stocks) {
+        emit(LoadedStockState(company: event.company, stocks: stocks));
+      },
     );
   }
 }

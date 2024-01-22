@@ -10,8 +10,13 @@ import 'package:stock_news_flutter/features/stock/presentation/blocs/stock_bloc.
 
 class StockOverviewCardWrapper extends StatelessWidget {
   final CompanyEntity company;
+  final VoidCallback? onTap;
 
-  const StockOverviewCardWrapper({super.key, required this.company});
+  const StockOverviewCardWrapper({
+    super.key,
+    required this.company,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +30,13 @@ class StockOverviewCardWrapper extends StatelessWidget {
       create: (context) {
         final bloc = serviceLocator<StockBloc>();
         bloc.add(LoadHistoricalStockEvent(
-          symbol: company.symbol,
+          company: company,
           from: today.subtract(const Duration(days: 3)),
           to: today,
         ));
         return bloc;
       },
-      child: StockOverviewCardBuilder(company: company),
+      child: StockOverviewCardBuilder(company: company, onTap: onTap),
     );
   }
 }
@@ -40,8 +45,13 @@ class StockOverviewCardBuilder extends StatelessWidget {
   static const keyPrefix = 'StockOverviewCard';
 
   final CompanyEntity company;
+  final VoidCallback? onTap;
 
-  const StockOverviewCardBuilder({super.key, required this.company});
+  const StockOverviewCardBuilder({
+    super.key,
+    required this.company,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +59,7 @@ class StockOverviewCardBuilder extends StatelessWidget {
       builder: (context, state) {
         if (state is LoadedStockState) {
           return _StockOverviewCard(
+            onTap: onTap,
             key: const Key('$keyPrefix-Card'),
             company: company,
             stock: state.stocks.first,
@@ -75,30 +86,35 @@ class StockOverviewCardBuilder extends StatelessWidget {
 class _StockOverviewCard extends StatelessWidget {
   final CompanyEntity company;
   final StockEntity stock;
+  final VoidCallback? onTap;
 
   const _StockOverviewCard({
     super.key,
     required this.company,
     required this.stock,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return Card(
       color: Theme.of(context).cardColor,
-      child: ListTile(
-        title: Text(company.symbol),
-        subtitle: Text(company.name),
-        trailing: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text(
-              stock.close.toString(),
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-            _ChangePercentWidget(changePercent: stock.changePercent),
-          ],
+      child: InkWell(
+        onTap: onTap,
+        child: ListTile(
+          title: Text(company.symbol),
+          subtitle: Text(company.name),
+          trailing: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                stock.close.toString(),
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              _ChangePercentWidget(changePercent: stock.changePercent),
+            ],
+          ),
         ),
       ),
     );
@@ -124,9 +140,7 @@ class _ChangePercentWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(PaddingValues.xxxSmall),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(
-          BorderRadiusValues.xSmallBorderRadius,
-        ),
+        borderRadius: BorderRadius.circular(BorderRadiusValues.xSmall),
         color: changePercent.isNegative ? SNColors.red : SNColors.green,
       ),
       child: Text(

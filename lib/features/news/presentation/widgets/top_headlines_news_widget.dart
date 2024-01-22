@@ -101,7 +101,7 @@ class _NewsCard extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(BorderRadiusValues.mediumBorderRadius),
+                  top: Radius.circular(BorderRadiusValues.medium),
                 ),
                 color: SNColors.grey.shade500,
               ),

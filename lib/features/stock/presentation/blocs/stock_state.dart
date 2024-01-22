@@ -16,12 +16,13 @@ class LoadingStockState extends StockState {
 }
 
 class LoadedStockState extends StockState {
+  final CompanyEntity company;
   final List<StockEntity> stocks;
 
-  const LoadedStockState({required this.stocks});
+  const LoadedStockState({required this.company, required this.stocks});
 
   @override
-  List<Object?> get props => [stocks];
+  List<Object?> get props => [company, stocks];
 }
 
 class ErrorStockState extends StockState {
