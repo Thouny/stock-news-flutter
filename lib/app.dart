@@ -20,13 +20,9 @@ Future<void> initApp() async {
 
   final storage = serviceLocator<SecureStorage>();
   const newsApiKey = String.fromEnvironment(EnvConsts.newsApiKey);
-  const financialModelingPrepApiKey =
-      String.fromEnvironment(EnvConsts.financialModelingPrepApiKey);
+  const fmpApiKey = String.fromEnvironment(EnvConsts.fmpApiKey);
   await storage.write(StorageKeys.newsApiKey.name, newsApiKey);
-  await storage.write(
-    StorageKeys.financialModelingPrepApiKey.name,
-    financialModelingPrepApiKey,
-  );
+  await storage.write(StorageKeys.fmpApiKey.name, fmpApiKey);
 
   runApp(const AppWrapper());
 }

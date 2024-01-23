@@ -22,8 +22,6 @@ class StockBloc extends Bloc<StockEvent, StockState> {
     LoadHistoricalStockEvent event,
     Emitter<StockState> emit,
   ) async {
-    emit(const LoadingStockState());
-
     final params = GetHistoricalStockParams(
       symbol: event.company.symbol,
       from: event.from,

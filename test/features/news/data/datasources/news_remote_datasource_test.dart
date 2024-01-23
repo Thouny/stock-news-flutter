@@ -4,10 +4,10 @@ import 'package:mockito/mockito.dart';
 import 'package:stock_news_flutter/core/enums/storage_keys.dart';
 import 'package:stock_news_flutter/core/error/exceptions.dart';
 import 'package:stock_news_flutter/core/network/api/news_http_client.dart';
-import 'package:stock_news_flutter/core/network/models/get_news_response_model.dart';
 import 'package:stock_news_flutter/core/storage/secure_storage.dart';
 import 'package:stock_news_flutter/features/news/data/datasource/news_remote_datasource.dart';
 
+import '../../../../fixtures/news_fixtures.dart';
 import 'news_remote_datasource_test.mocks.dart';
 
 @GenerateMocks([NewsHttpClient, SecureStorage])
@@ -18,11 +18,7 @@ void main() {
 
   final tKey = StorageKeys.newsApiKey.name;
   const tApiKey = 'testApiKey';
-  const tResponse = GetNewsResponseModel(
-    status: 'ok',
-    totalResults: 0,
-    articles: [],
-  );
+  const tResponse = NewsFixtures.getNewsResponseModel;
 
   setUp(() {
     mockClient = MockNewsHttpClient();

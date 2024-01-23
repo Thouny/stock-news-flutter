@@ -3,10 +3,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:stock_news_flutter/core/usercase/usecase.dart';
-import 'package:stock_news_flutter/features/news/domain/entities/news_entity.dart';
 import 'package:stock_news_flutter/features/news/domain/repositories/news_repository.dart';
 import 'package:stock_news_flutter/features/news/domain/usecases/get_top_headlines_usecase.dart';
 
+import '../../../../fixtures/news_fixtures.dart';
 import 'get_top_headlines_usecase_test.mocks.dart';
 
 @GenerateMocks([NewsRepository])
@@ -14,16 +14,7 @@ void main() {
   late GetTopHeadlinesUsecase usecase;
   late MockNewsRepository mockNewsRepository;
 
-  const tNewsEntity = NewsEntity(
-    title: 'title',
-    description: 'description',
-    url: 'url',
-    urlToImage: 'urlToImage',
-    publishedAt: '',
-    content: 'content',
-    source: Source(id: 'id', name: 'name'),
-    author: '',
-  );
+  const tNewsEntities = NewsFixtures.newsEntities;
 
   setUp(() {
     mockNewsRepository = MockNewsRepository();
@@ -37,11 +28,11 @@ void main() {
   test('should forward the call to the repository', () async {
     // arrange
     when(mockNewsRepository.getTopHeadlines())
-        .thenAnswer((_) async => const Right([tNewsEntity]));
+        .thenAnswer((_) async => const Right(tNewsEntities));
     // act
     final result = await usecase(const NoParams());
     // assert
-    expect(result, const Right([tNewsEntity]));
+    expect(result, const Right(tNewsEntities));
     verify(mockNewsRepository.getTopHeadlines());
     verifyNoMoreInteractions(mockNewsRepository);
   });

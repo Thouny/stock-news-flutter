@@ -6,10 +6,10 @@ import 'package:get_it/get_it.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:stock_news_flutter/core/utils/link_handler.dart';
-import 'package:stock_news_flutter/features/news/domain/entities/news_entity.dart';
 import 'package:stock_news_flutter/features/news/presentation/blocs/news_bloc.dart';
 import 'package:stock_news_flutter/features/news/presentation/widgets/top_headlines_news_widget.dart';
 
+import '../../../../fixtures/news_fixtures.dart';
 import 'top_headlines_news_widget_test.mocks.dart';
 
 class MockNewsBloc extends MockBloc<NewsEvent, NewsState> implements NewsBloc {}
@@ -19,16 +19,7 @@ void main() {
   late MockNewsBloc mockNewsBloc;
   late MockLinkHandler mockLinkHandler;
 
-  const tNewsEntity = NewsEntity(
-    title: 'title',
-    description: 'description',
-    url: 'url',
-    urlToImage: '',
-    publishedAt: '',
-    content: 'content',
-    source: Source(id: 'id', name: 'name'),
-    author: '',
-  );
+  const tNewsEntities = NewsFixtures.newsEntities;
 
   const keyPrefix = TopHealinesNewsWidget.keyPrefix;
 
@@ -49,7 +40,7 @@ void main() {
       // arrange
       whenListen(
         mockNewsBloc,
-        Stream.value(const LoadedNewsState(news: [tNewsEntity])),
+        Stream.value(const LoadedNewsState(news: tNewsEntities)),
         initialState: const InitialNewsState(),
       );
 
@@ -105,7 +96,7 @@ void main() {
       // arrange
       whenListen(
         mockNewsBloc,
-        Stream.value(const LoadingNewsState()),
+        Stream.value(const InitialNewsState()),
         initialState: const InitialNewsState(),
       );
       await tester.pumpWidget(_WidgetWrapper(

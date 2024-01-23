@@ -32,7 +32,7 @@ class StockRemoteDataSourceImpl implements StockRemoteDataSource {
     DateTime from,
     DateTime to,
   ) async {
-    final key = StorageKeys.financialModelingPrepApiKey.name;
+    final key = StorageKeys.fmpApiKey.name;
     final apiKey = await _storage.read<String>(key) ?? "";
     if (apiKey.isEmpty) throw const StorageException("API key not found");
 
@@ -52,14 +52,11 @@ class StockRemoteDataSourceImpl implements StockRemoteDataSource {
   Future<GetCompanyProfileResponseModel> getCompanyProfile(
     String symbol,
   ) async {
-    final key = StorageKeys.financialModelingPrepApiKey.name;
+    final key = StorageKeys.fmpApiKey.name;
     final apiKey = await _storage.read<String>(key) ?? "";
     if (apiKey.isEmpty) throw const StorageException("API key not found");
 
-    final response = await _client.getCompanyProfile(
-      symbol,
-      apiKey,
-    );
+    final response = await _client.getCompanyProfile(symbol, apiKey);
     if (response.response.statusCode != 200) {
       throw const ServerException('Server responded with an error code');
     }

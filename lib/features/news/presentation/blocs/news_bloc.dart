@@ -22,7 +22,6 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     LoadTopHeadlinesNewsEvent event,
     Emitter<NewsState> emit,
   ) async {
-    emit(const LoadingNewsState());
     final newsEither = await _getTopHeadlinesUsecase(const NoParams());
     newsEither.fold(
       (failure) {

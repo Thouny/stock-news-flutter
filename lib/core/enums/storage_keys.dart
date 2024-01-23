@@ -1,1 +1,1 @@
-enum StorageKeys { newsApiKey, financialModelingPrepApiKey }
+enum StorageKeys { newsApiKey, fmpApiKey }

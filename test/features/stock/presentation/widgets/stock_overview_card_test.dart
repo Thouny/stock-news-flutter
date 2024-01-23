@@ -94,7 +94,7 @@ void main() {
       // arrange
       whenListen(
         mockStockBloc,
-        Stream.value(const LoadingStockState()),
+        Stream.value(const InitialStockState()),
         initialState: const InitialStockState(),
       );
       await tester.pumpWidget(_WidgetWrapper(
