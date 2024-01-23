@@ -2,6 +2,23 @@
 
 StockNews is a mobile application for people to get the latest business and tech news and stock market information.
 
+## Table of Contents
+
+1. [Project Overview](#project-overview)
+2. [Installation](#installation)
+   1. [VSCode](#vscode)
+   2. [IntelliJ/Android Studio](#intellijandroid-studio)
+3. [Project Architecture Overview](#project-architecture-overview)
+   1. [Features](#features)
+      1. [Presentation](#presentation)
+      2. [Domain](#domain)
+      3. [Data](#data)
+   2. [Core](#core)
+   3. [Dependency Injection](#dependency-injection)
+   4. [Routing](#routing)
+   5. [Pages](#pages)
+4. [Contributing](#contributing)
+
 ## Project Overview
 
 StockNews is a project developed as a practice to showcase my approach to coding.
@@ -75,15 +92,81 @@ Additional run args: `--dart-define "NEWS_API_KEY=insert_api_key_here" --dart-de
 
 [Additional documentation can be found here](https://www.jetbrains.com/help/idea/run-debug-configuration.html).
 
-## Technical
+## Project Architecture Overview
 
-This project architecture is based on the Clean Architecture.
+This project is structured following the Clean Architecture principle.
 
-Features:
+### Features
 
 - **News**: Provide business and tech news
 - **Stock**: Allows the user to see companyies' stock data
 - **User**: Used to fetch the user from the device and greet them on the home screen.
+
+Each feature is organized into three fundamental layers: Presentation, Domain, and Data.
+
+#### Presentation
+
+The `presentation` layer contains all UI components associated with the feature.
+
+/presentation
+---> blocs
+---> widgets
+
+- widgets: UI components responsible for displaying data (provided by the bloc) and responding to user interactions. They actively listen to state changes emitted from the bloc.
+- blocs: The brain behind the UI. A bloc encapsulates the UI state, receives events from user interactions, delegates tasks to use cases, and emits states based on the results provided by the use case.
+
+#### Domain
+
+The `domain` layer holds the core business logic and entities, shaping the heart of each feature.
+
+/domain
+---> usecases
+---> entities
+---> repositories
+
+- usescases Where the business logic gets executed. Delegate the work of getting the data to the repository.
+- entity: Represents the business object, defining the data to be displayed on the UI.
+- repository: Acts as a contract, outlining the interface to be implemented in the data layer. It provides data to the use case.
+
+#### Data
+
+The `data` layer is responsible for data handling, interfacing with various sources.
+
+/data
+---> datasources
+---> repositories
+
+- repository: Implements the interface defined in the domain layer, deciding which data source to fetch from (remote or local).
+- datasource: Can be remote (API calls) or local (handling data from third-party libraries).
+
+### Core
+
+The `core` folder contains all reusable code across different features.
+
+/core
+---> consts
+---> enums
+---> error
+---> extension
+---> theme
+---> utils
+---> widgets
+
+### Dependency Injection
+
+The `di` folder is responsible for registering and injecting all dependencies at app start-up.
+
+/di
+
+### Routing
+
+The `routing` folder encapsulates the navigation logic of the app.
+
+/routing
+
+### Pages
+
+The `pages` folder contain all of the app pages.
 
 ## Contributing
 
