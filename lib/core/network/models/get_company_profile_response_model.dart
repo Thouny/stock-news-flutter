@@ -1,8 +1,11 @@
-import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:stock_news_flutter/features/stock/domain/entities/company_entity.dart';
 
-class CompanyEntity extends Equatable {
+part 'get_company_profile_response_model.g.dart';
+
+@JsonSerializable()
+class GetCompanyProfileResponseModel {
   final String symbol;
-  final String currency;
   final double price;
   final double beta;
   final int volAvg;
@@ -11,6 +14,7 @@ class CompanyEntity extends Equatable {
   final String range;
   final double changes;
   final String companyName;
+  final String currency;
   final String cik;
   final String isin;
   final String cusip;
@@ -38,9 +42,8 @@ class CompanyEntity extends Equatable {
   final bool isAdr;
   final bool isFund;
 
-  const CompanyEntity({
+  GetCompanyProfileResponseModel({
     required this.symbol,
-    required this.currency,
     required this.price,
     required this.beta,
     required this.volAvg,
@@ -49,6 +52,7 @@ class CompanyEntity extends Equatable {
     required this.range,
     required this.changes,
     required this.companyName,
+    required this.currency,
     required this.cik,
     required this.isin,
     required this.cusip,
@@ -77,43 +81,49 @@ class CompanyEntity extends Equatable {
     required this.isFund,
   });
 
-  @override
-  List<Object?> get props => [
-        symbol,
-        currency,
-        price,
-        beta,
-        volAvg,
-        mktCap,
-        lastDiv,
-        range,
-        changes,
-        companyName,
-        cik,
-        isin,
-        cusip,
-        exchange,
-        exchangeShortName,
-        industry,
-        website,
-        description,
-        ceo,
-        sector,
-        country,
-        fullTimeEmployees,
-        phone,
-        address,
-        city,
-        state,
-        zip,
-        dcfDiff,
-        dcf,
-        image,
-        ipoDate,
-        defaultImage,
-        isEtf,
-        isActivelyTrading,
-        isAdr,
-        isFund,
-      ];
+  factory GetCompanyProfileResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$GetCompanyProfileResponseModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$GetCompanyProfileResponseModelToJson(this);
+
+  CompanyEntity get toEntity {
+    return CompanyEntity(
+      symbol: symbol,
+      currency: currency,
+      price: price,
+      beta: beta,
+      volAvg: volAvg,
+      mktCap: mktCap,
+      lastDiv: lastDiv,
+      range: range,
+      changes: changes,
+      companyName: companyName,
+      cik: cik,
+      isin: isin,
+      cusip: cusip,
+      exchange: exchange,
+      exchangeShortName: exchangeShortName,
+      industry: industry,
+      website: website,
+      description: description,
+      ceo: ceo,
+      sector: sector,
+      country: country,
+      fullTimeEmployees: fullTimeEmployees,
+      phone: phone,
+      address: address,
+      city: city,
+      state: state,
+      zip: zip,
+      dcfDiff: dcfDiff,
+      dcf: dcf,
+      image: image,
+      ipoDate: ipoDate,
+      defaultImage: defaultImage,
+      isEtf: isEtf,
+      isActivelyTrading: isActivelyTrading,
+      isAdr: isAdr,
+      isFund: isFund,
+    );
+  }
 }
