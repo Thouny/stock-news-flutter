@@ -103,7 +103,7 @@ class _StockOverviewCard extends StatelessWidget {
         onTap: onTap,
         child: ListTile(
           title: Text(company.symbol),
-          subtitle: Text(company.name),
+          subtitle: Text(company.companyName),
           trailing: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.end,

@@ -42,7 +42,7 @@ class GetCompanyProfileResponseModel {
   final bool isAdr;
   final bool isFund;
 
-  GetCompanyProfileResponseModel({
+  const GetCompanyProfileResponseModel({
     required this.symbol,
     required this.price,
     required this.beta,

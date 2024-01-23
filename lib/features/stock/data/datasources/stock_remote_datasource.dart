@@ -2,6 +2,7 @@ import 'package:stock_news_flutter/core/enums/storage_keys.dart';
 import 'package:stock_news_flutter/core/error/exceptions.dart';
 import 'package:stock_news_flutter/core/extension/date_time.dart';
 import 'package:stock_news_flutter/core/network/api/financial_modeling_prep_http_client.dart';
+import 'package:stock_news_flutter/core/network/models/get_company_profile_response_model.dart';
 import 'package:stock_news_flutter/core/network/models/get_historical_stock_response_model.dart';
 import 'package:stock_news_flutter/core/storage/secure_storage.dart';
 
@@ -11,6 +12,8 @@ abstract class StockRemoteDataSource {
     DateTime from,
     DateTime to,
   );
+
+  Future<GetCompanyProfileResponseModel> getCompanyProfile(String symbol);
 }
 
 class StockRemoteDataSourceImpl implements StockRemoteDataSource {
@@ -43,5 +46,24 @@ class StockRemoteDataSourceImpl implements StockRemoteDataSource {
       throw const ServerException('Server responded with an error code');
     }
     return response.data.historical.map((e) => e).toList();
+  }
+
+  @override
+  Future<GetCompanyProfileResponseModel> getCompanyProfile(
+    String symbol,
+  ) async {
+    final key = StorageKeys.financialModelingPrepApiKey.name;
+    final apiKey = await _storage.read<String>(key) ?? "";
+    if (apiKey.isEmpty) throw const StorageException("API key not found");
+
+    final response = await _client.getCompanyProfile(
+      symbol,
+      apiKey,
+    );
+    if (response.response.statusCode != 200) {
+      throw const ServerException('Server responded with an error code');
+    }
+
+    return response.data;
   }
 }

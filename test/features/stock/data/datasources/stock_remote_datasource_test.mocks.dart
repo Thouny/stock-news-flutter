@@ -9,9 +9,11 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:retrofit/retrofit.dart' as _i2;
 import 'package:stock_news_flutter/core/network/api/financial_modeling_prep_http_client.dart'
     as _i3;
+import 'package:stock_news_flutter/core/network/models/get_company_profile_response_model.dart'
+    as _i6;
 import 'package:stock_news_flutter/core/network/models/get_historical_stock_response_model.dart'
     as _i5;
-import 'package:stock_news_flutter/core/storage/secure_storage.dart' as _i6;
+import 'package:stock_news_flutter/core/storage/secure_storage.dart' as _i7;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -81,12 +83,40 @@ class MockFinancialModelingPrepHttpClient extends _i1.Mock
             )),
           ) as _i4
               .Future<_i2.HttpResponse<_i5.GetHistoricalStockResponseModel>>);
+
+  @override
+  _i4.Future<
+      _i2.HttpResponse<_i6.GetCompanyProfileResponseModel>> getCompanyProfile(
+    String? symbol,
+    String? apiKey,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getCompanyProfile,
+          [
+            symbol,
+            apiKey,
+          ],
+        ),
+        returnValue: _i4
+            .Future<_i2.HttpResponse<_i6.GetCompanyProfileResponseModel>>.value(
+            _FakeHttpResponse_0<_i6.GetCompanyProfileResponseModel>(
+          this,
+          Invocation.method(
+            #getCompanyProfile,
+            [
+              symbol,
+              apiKey,
+            ],
+          ),
+        )),
+      ) as _i4.Future<_i2.HttpResponse<_i6.GetCompanyProfileResponseModel>>);
 }
 
 /// A class which mocks [SecureStorage].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSecureStorage extends _i1.Mock implements _i6.SecureStorage {
+class MockSecureStorage extends _i1.Mock implements _i7.SecureStorage {
   MockSecureStorage() {
     _i1.throwOnMissingStub(this);
   }

@@ -8,6 +8,8 @@ import 'dart:async' as _i4;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:stock_news_flutter/core/error/failures.dart' as _i5;
+import 'package:stock_news_flutter/features/stock/domain/entities/company_entity.dart'
+    as _i7;
 import 'package:stock_news_flutter/features/stock/domain/entities/stock_entity.dart'
     as _i6;
 import 'package:stock_news_flutter/features/stock/domain/repositories/stock_repository.dart'
@@ -73,4 +75,22 @@ class MockStockRepository extends _i1.Mock implements _i3.StockRepository {
           ),
         )),
       ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.StockEntity>>>);
+
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, List<_i7.CompanyEntity>>>
+      getCompaniesProfile(List<String>? symbols) => (super.noSuchMethod(
+            Invocation.method(
+              #getCompaniesProfile,
+              [symbols],
+            ),
+            returnValue: _i4
+                .Future<_i2.Either<_i5.Failure, List<_i7.CompanyEntity>>>.value(
+                _FakeEither_0<_i5.Failure, List<_i7.CompanyEntity>>(
+              this,
+              Invocation.method(
+                #getCompaniesProfile,
+                [symbols],
+              ),
+            )),
+          ) as _i4.Future<_i2.Either<_i5.Failure, List<_i7.CompanyEntity>>>);
 }

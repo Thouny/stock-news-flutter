@@ -3,15 +3,17 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:stock_news_flutter/core/network/models/get_historical_stock_response_model.dart'
-    as _i4;
-import 'package:stock_news_flutter/core/network/service/connectivity_service.dart'
-    as _i5;
-import 'package:stock_news_flutter/features/stock/data/datasources/stock_remote_datasource.dart'
+import 'package:stock_news_flutter/core/network/models/get_company_profile_response_model.dart'
     as _i2;
+import 'package:stock_news_flutter/core/network/models/get_historical_stock_response_model.dart'
+    as _i5;
+import 'package:stock_news_flutter/core/network/service/connectivity_service.dart'
+    as _i6;
+import 'package:stock_news_flutter/features/stock/data/datasources/stock_remote_datasource.dart'
+    as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -26,17 +28,28 @@ import 'package:stock_news_flutter/features/stock/data/datasources/stock_remote_
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+class _FakeGetCompanyProfileResponseModel_0 extends _i1.SmartFake
+    implements _i2.GetCompanyProfileResponseModel {
+  _FakeGetCompanyProfileResponseModel_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [StockRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockStockRemoteDataSource extends _i1.Mock
-    implements _i2.StockRemoteDataSource {
+    implements _i3.StockRemoteDataSource {
   MockStockRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<List<_i4.HistoricalDataModel>> getHistoricalStock(
+  _i4.Future<List<_i5.HistoricalDataModel>> getHistoricalStock(
     String? symbol,
     DateTime? from,
     DateTime? to,
@@ -50,22 +63,40 @@ class MockStockRemoteDataSource extends _i1.Mock
             to,
           ],
         ),
-        returnValue: _i3.Future<List<_i4.HistoricalDataModel>>.value(
-            <_i4.HistoricalDataModel>[]),
-      ) as _i3.Future<List<_i4.HistoricalDataModel>>);
+        returnValue: _i4.Future<List<_i5.HistoricalDataModel>>.value(
+            <_i5.HistoricalDataModel>[]),
+      ) as _i4.Future<List<_i5.HistoricalDataModel>>);
+
+  @override
+  _i4.Future<_i2.GetCompanyProfileResponseModel> getCompanyProfile(
+          String? symbol) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getCompanyProfile,
+          [symbol],
+        ),
+        returnValue: _i4.Future<_i2.GetCompanyProfileResponseModel>.value(
+            _FakeGetCompanyProfileResponseModel_0(
+          this,
+          Invocation.method(
+            #getCompanyProfile,
+            [symbol],
+          ),
+        )),
+      ) as _i4.Future<_i2.GetCompanyProfileResponseModel>);
 }
 
 /// A class which mocks [ConnectionService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockConnectionService extends _i1.Mock implements _i5.ConnectionService {
+class MockConnectionService extends _i1.Mock implements _i6.ConnectionService {
   MockConnectionService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<bool> get isConnected => (super.noSuchMethod(
+  _i4.Future<bool> get isConnected => (super.noSuchMethod(
         Invocation.getter(#isConnected),
-        returnValue: _i3.Future<bool>.value(false),
-      ) as _i3.Future<bool>);
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 }
