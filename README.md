@@ -108,21 +108,12 @@ Each feature is organized into three fundamental layers: Presentation, Domain, a
 
 The `presentation` layer contains all UI components associated with the feature.
 
-/presentation
----> blocs
----> widgets
-
 - widgets: UI components responsible for displaying data (provided by the bloc) and responding to user interactions. They actively listen to state changes emitted from the bloc.
 - blocs: The brain behind the UI. A bloc encapsulates the UI state, receives events from user interactions, delegates tasks to use cases, and emits states based on the results provided by the use case.
 
 #### Domain
 
 The `domain` layer holds the core business logic and entities, shaping the heart of each feature.
-
-/domain
----> usecases
----> entities
----> repositories
 
 - usescases Where the business logic gets executed. Delegate the work of getting the data to the repository.
 - entity: Represents the business object, defining the data to be displayed on the UI.
@@ -132,10 +123,6 @@ The `domain` layer holds the core business logic and entities, shaping the heart
 
 The `data` layer is responsible for data handling, interfacing with various sources.
 
-/data
----> datasources
----> repositories
-
 - repository: Implements the interface defined in the domain layer, deciding which data source to fetch from (remote or local).
 - datasource: Can be remote (API calls) or local (handling data from third-party libraries).
 
@@ -143,26 +130,28 @@ The `data` layer is responsible for data handling, interfacing with various sour
 
 The `core` folder contains all reusable code across different features.
 
-/core
----> consts
----> enums
----> error
----> extension
----> theme
----> utils
----> widgets
+--> consts
+
+--> enums
+
+--> error
+
+--> extension
+
+--> theme
+
+--> utils
+
+--> widgets
+
 
 ### Dependency Injection
 
 The `di` folder is responsible for registering and injecting all dependencies at app start-up.
 
-/di
-
 ### Routing
 
 The `routing` folder encapsulates the navigation logic of the app.
-
-/routing
 
 ### Pages
 
