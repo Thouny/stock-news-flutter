@@ -12,7 +12,8 @@ class LayoutDelegate extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (ResponsiveUtils.isIpad) const Expanded(child: SideMenu()),
+        if (ResponsiveUtils.isTablet(context))
+          const Expanded(child: SideMenu()),
         Expanded(flex: 4, child: child),
       ],
     );

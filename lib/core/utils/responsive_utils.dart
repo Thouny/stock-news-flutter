@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
 class ResponsiveUtils extends StatelessWidget {
@@ -13,14 +11,6 @@ class ResponsiveUtils extends StatelessWidget {
   final Widget desktop;
   final Widget mobile;
   final Widget? tablet;
-
-  static bool get isIpad {
-    return Platform.isIOS &&
-        MediaQueryData.fromView(WidgetsBinding.instance.window)
-                .size
-                .shortestSide >
-            600;
-  }
 
   static bool isMobile(BuildContext context) {
     return MediaQuery.of(context).size.width < 600;

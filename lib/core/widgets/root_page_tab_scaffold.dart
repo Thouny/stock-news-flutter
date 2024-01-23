@@ -37,7 +37,7 @@ class _RootPageTabScaffoldState extends State<RootPageTabScaffold>
   Widget build(BuildContext context) {
     final tabState = TabPage.of(context);
     final currentPath = Routemaster.of(context).currentRoute.fullPath;
-    final isTablet = ResponsiveUtils.isIpad;
+    final isTablet = ResponsiveUtils.isTablet(context);
 
     return Scaffold(
       key: context.read<controller.MenuController>().scaffoldKey,

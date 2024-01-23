@@ -44,12 +44,13 @@ class _TopHeadlinesNewsListView extends StatelessWidget {
     return BlocBuilder<NewsBloc, NewsState>(
       builder: (context, state) {
         if (state is LoadedNewsState) {
+          final isTablet = ResponsiveUtils.isTablet(context);
           return GridView.builder(
             key: const Key('${TopHealinesNewsWidget.keyPrefix}-GridView'),
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: ResponsiveUtils.isIpad ? 2 : 1,
+              crossAxisCount: isTablet ? 2 : 1,
               crossAxisSpacing: PaddingValues.xSmall,
               mainAxisSpacing: PaddingValues.xSmall,
             ),

@@ -6,7 +6,7 @@ StockNews is a mobile application for people to get the latest business and tech
 
 StockNews is a project developed as a practice to showcase my approach to coding.
 
-From a technical perspective, StockNews is implemented using Flutter.
+From a technical perspective, StockNews is implemented using Flutter using Clean Architecture.
 
 It relies on [NewsAPI](https://newsapi.org/docs) to get the latest news
 
