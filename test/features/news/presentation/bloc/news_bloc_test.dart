@@ -4,10 +4,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:stock_news_flutter/core/error/failures.dart';
-import 'package:stock_news_flutter/features/news/domain/entities/news_entity.dart';
 import 'package:stock_news_flutter/features/news/domain/usecases/get_top_headlines_usecase.dart';
 import 'package:stock_news_flutter/features/news/presentation/blocs/news_bloc.dart';
 
+import '../../../../fixtures/news_fixtures.dart';
 import 'news_bloc_test.mocks.dart';
 
 @GenerateMocks([GetTopHeadlinesUsecase])
@@ -15,17 +15,7 @@ void main() {
   late NewsBloc bloc;
   late MockGetTopHeadlinesUsecase mockGetTopHeadlinesUsecase;
 
-  const tNewsEntity = NewsEntity(
-    title: 'title',
-    description: 'description',
-    url: 'url',
-    urlToImage: 'urlToImage',
-    publishedAt: '',
-    content: 'content',
-    source: Source(id: 'id', name: 'name'),
-    author: '',
-  );
-
+  const tNewsEntities = NewsFixtures.newsEntities;
   const tServerFailure = ServerFailure('Server Failure');
 
   setUp(() {
@@ -42,14 +32,11 @@ void main() {
       'should emit [LoadedGreetingState] when the usecase returns a value',
       setUp: () {
         when(mockGetTopHeadlinesUsecase(any))
-            .thenAnswer((_) async => const Right([tNewsEntity]));
+            .thenAnswer((_) async => const Right(tNewsEntities));
       },
       build: () => bloc,
       act: (bloc) => bloc.add(const LoadTopHeadlinesNewsEvent()),
-      expect: () => [
-        const LoadingNewsState(),
-        const LoadedNewsState(news: [tNewsEntity])
-      ],
+      expect: () => [const LoadedNewsState(news: tNewsEntities)],
     );
 
     blocTest<NewsBloc, NewsState>(
@@ -60,10 +47,7 @@ void main() {
       },
       build: () => bloc,
       act: (bloc) => bloc.add(const LoadTopHeadlinesNewsEvent()),
-      expect: () => [
-        const LoadingNewsState(),
-        ErrorNewsState(message: tServerFailure.message)
-      ],
+      expect: () => [ErrorNewsState(message: tServerFailure.message)],
     );
   });
 }

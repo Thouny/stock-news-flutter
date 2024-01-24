@@ -11,10 +11,6 @@ class InitialNewsState extends NewsState {
   const InitialNewsState();
 }
 
-class LoadingNewsState extends NewsState {
-  const LoadingNewsState();
-}
-
 class LoadedNewsState extends NewsState {
   final List<NewsEntity> news;
 

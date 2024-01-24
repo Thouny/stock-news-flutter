@@ -45,7 +45,7 @@ class HomePage extends AppPage<void> {
               },
             ),
           ],
-          child: const HomeView(),
+          child: const LayoutDelegate(child: HomeView()),
         );
       },
     );
@@ -59,23 +59,21 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutDelegate(
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(PaddingValues.small),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const GreetingWidget(key: Key('$keyPrefix-GreetingWidget')),
-              const SizedBox(height: PaddingValues.small),
-              Expanded(
-                child: TopHealinesNewsWidget(
-                  key: const Key('$keyPrefix-TopHealinesNewsWidget'),
-                  linkHandler: serviceLocator<LinkHandler>(),
-                ),
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(PaddingValues.small),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const GreetingWidget(key: Key('$keyPrefix-GreetingWidget')),
+            const SizedBox(height: PaddingValues.small),
+            Expanded(
+              child: TopHealinesNewsWidget(
+                key: const Key('$keyPrefix-TopHealinesNewsWidget'),
+                linkHandler: serviceLocator<LinkHandler>(),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

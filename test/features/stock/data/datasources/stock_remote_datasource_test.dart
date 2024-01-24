@@ -11,6 +11,7 @@ import 'package:stock_news_flutter/core/network/models/get_historical_stock_resp
 import 'package:stock_news_flutter/core/storage/secure_storage.dart';
 import 'package:stock_news_flutter/features/stock/data/datasources/stock_remote_datasource.dart';
 
+import '../../../../fixtures/stock_fixtures.dart';
 import 'stock_remote_datasource_test.mocks.dart';
 
 @GenerateMocks([FinancialModelingPrepHttpClient, SecureStorage])
@@ -21,12 +22,14 @@ void main() {
 
   const tApiKey = 'testApiKey';
   const tSymbol = 'AAPL';
-  const tResponse = GetHistoricalStockResponseModel(
+  const tGetHistoricalStockResponse = GetHistoricalStockResponseModel(
     symbol: tSymbol,
     historical: [],
   );
+  const tGetCompanyProfileResponseModel =
+      StockFixtures.getCompanyProfileResponseModel;
 
-  final tKey = StorageKeys.financialModelingPrepApiKey.name;
+  final tKey = StorageKeys.fmpApiKey.name;
   final tFrom = DateTime(2024, 01, 18);
   final tTo = DateTime(2024, 01, 21);
 
@@ -92,13 +95,63 @@ void main() {
         tFrom.toDateString,
         tTo.toDateString,
         tApiKey,
-      )).thenAnswer((_) async => HttpResponse(tResponse,
+      )).thenAnswer((_) async => HttpResponse(tGetHistoricalStockResponse,
           Response(requestOptions: RequestOptions(), statusCode: 200)));
       // act
       final result = await dataSource.getHistoricalStock(tSymbol, tFrom, tTo);
       // assert
       verify(mockStorage.read<String>(tKey));
-      expect(result, tResponse.historical);
+      expect(result, tGetHistoricalStockResponse.historical);
+    });
+  });
+
+  group('getCompanyProfile', () {
+    test('should throw [StorageException] when API key is not found in storage',
+        () async {
+      // arrange
+      when(mockStorage.read<String>(tKey)).thenAnswer((_) async => null);
+      // act
+      final call = dataSource.getCompanyProfile;
+      // assert
+      expect(call(tSymbol), throwsA(isA<StorageException>()));
+    });
+
+    test('should throw [ServerException] when the network request fails',
+        () async {
+      // arrange
+      when(mockStorage.read<String>(tKey)).thenAnswer((_) async => tApiKey);
+      when(mockClient.getCompanyProfile(tSymbol, tApiKey)).thenThrow(
+        const ServerException('Server responded with an error code'),
+      );
+      // act
+      final call = dataSource.getCompanyProfile;
+      // assert
+      expect(call(tSymbol), throwsA(isA<ServerException>()));
+    });
+
+    test('should throw [Exception] when an unexpected error occurs', () async {
+      // arrange
+      when(mockStorage.read<String>(tKey)).thenAnswer((_) async => tApiKey);
+      when(mockClient.getCompanyProfile(tSymbol, tApiKey))
+          .thenThrow(Exception());
+      // act
+      final call = dataSource.getCompanyProfile;
+      // assert
+      expect(call(tSymbol), throwsA(isA<Exception>()));
+    });
+
+    test('should make successful network request and return historical data',
+        () async {
+      // arrange
+      when(mockStorage.read<String>(tKey)).thenAnswer((_) async => tApiKey);
+      when(mockClient.getCompanyProfile(tSymbol, tApiKey)).thenAnswer(
+          (_) async => HttpResponse([tGetCompanyProfileResponseModel],
+              Response(requestOptions: RequestOptions(), statusCode: 200)));
+      // act
+      final result = await dataSource.getCompanyProfile(tSymbol);
+      // assert
+      verify(mockStorage.read<String>(tKey));
+      expect(result, tGetCompanyProfileResponseModel);
     });
   });
 }

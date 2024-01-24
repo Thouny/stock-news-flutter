@@ -29,7 +29,7 @@ class SideMenu extends StatelessWidget {
             ),
           ),
           _DrawerListTile(
-            title: AppConsts.tracker,
+            title: AppConsts.stocks,
             press: () => tabState.controller.animateTo(1),
             icon: const IconButton(
               onPressed: null,

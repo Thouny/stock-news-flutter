@@ -11,10 +11,6 @@ class InitialStockState extends StockState {
   const InitialStockState();
 }
 
-class LoadingStockState extends StockState {
-  const LoadingStockState();
-}
-
 class LoadedStockState extends StockState {
   final CompanyEntity company;
   final List<StockEntity> stocks;

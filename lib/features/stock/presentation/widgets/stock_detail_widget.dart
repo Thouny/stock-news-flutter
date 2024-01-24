@@ -75,7 +75,7 @@ class _CompanyInfo extends StatelessWidget {
             ),
             const SizedBox(width: PaddingValues.xSmall),
             Text(
-              company.name,
+              company.companyName,
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ],

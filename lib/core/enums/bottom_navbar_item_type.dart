@@ -3,7 +3,7 @@ import 'package:stock_news_flutter/core/consts/app_consts.dart';
 
 enum BottomNavbarItemType {
   home(0, AppConsts.home, Icons.dashboard_rounded),
-  tracker(1, AppConsts.tracker, Icons.ssid_chart_rounded),
+  stocks(1, AppConsts.stocks, Icons.ssid_chart_rounded),
   settings(2, AppConsts.settings, Icons.settings);
 
   final int tabIndex;

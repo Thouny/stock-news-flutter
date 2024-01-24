@@ -59,7 +59,6 @@ void main() {
         to: DateTime(2024, 01, 18),
       )),
       expect: () => [
-        const LoadingStockState(),
         LoadedStockState(
           company: StockConsts.companyWatchlist.first,
           stocks: tStockEntities,
@@ -79,10 +78,7 @@ void main() {
         from: DateTime(2024, 01, 18),
         to: DateTime(2024, 01, 18),
       )),
-      expect: () => [
-        const LoadingStockState(),
-        ErrorStockState(message: tServerFailure.message)
-      ],
+      expect: () => [ErrorStockState(message: tServerFailure.message)],
     );
   });
 }
