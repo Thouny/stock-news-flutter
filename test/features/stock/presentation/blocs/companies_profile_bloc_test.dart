@@ -8,7 +8,7 @@ import 'package:stock_news_flutter/features/stock/domain/usecases/get_companies_
 import 'package:stock_news_flutter/features/stock/presentation/blocs/companies_profile_bloc.dart';
 
 import '../../../../fixtures/stock_fixtures.dart';
-import 'company_profile_bloc_test.mocks.dart';
+import 'companies_profile_bloc_test.mocks.dart';
 
 @GenerateMocks([GetCompaniesProfileUsecase])
 void main() {

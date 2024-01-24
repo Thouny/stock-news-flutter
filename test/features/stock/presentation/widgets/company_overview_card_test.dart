@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:stock_news_flutter/core/consts/stock_consts.dart';
 import 'package:stock_news_flutter/features/stock/domain/entities/company_entity.dart';
 import 'package:stock_news_flutter/features/stock/presentation/widgets/company_overview_card.dart';
+
+import '../../../../fixtures/stock_fixtures.dart';
 
 void main() {
   const keyPrefix = CompanyOverviewCard.keyPrefix;
 
-  final tCompanyEntity = StockConsts.companyWatchlist.first;
+  final tCompanyEntity = StockFixtures.companiesProfileEntities.first;
 
   testWidgets('should render expected widgets', (tester) async {
     // arrange

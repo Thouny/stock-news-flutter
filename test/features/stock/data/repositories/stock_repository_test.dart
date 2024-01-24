@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:stock_news_flutter/core/consts/stock_consts.dart';
 import 'package:stock_news_flutter/core/error/exceptions.dart';
 import 'package:stock_news_flutter/core/error/failures.dart';
 import 'package:stock_news_flutter/core/network/service/connectivity_service.dart';
@@ -22,7 +21,7 @@ void main() {
   const tHistoricalDataModels = StockFixtures.historicalDataModels;
   const tGetCompanyProfileResponseModel =
       StockFixtures.getCompanyProfileResponseModel;
-  const tCompanyEntities = StockConsts.companyWatchlist;
+  const tCompanyEntities = StockFixtures.companiesProfileEntities;
   final tStockEntities = StockFixtures.stockEntities;
   const tServerException =
       ServerException('Server responded with an error code');

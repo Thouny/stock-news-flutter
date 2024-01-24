@@ -3,12 +3,12 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:stock_news_flutter/core/consts/stock_consts.dart';
 import 'package:stock_news_flutter/core/error/failures.dart';
 import 'package:stock_news_flutter/features/stock/domain/entities/stock_entity.dart';
 import 'package:stock_news_flutter/features/stock/domain/usecases/get_historical_stock.dart';
 import 'package:stock_news_flutter/features/stock/presentation/blocs/stock_bloc.dart';
 
+import '../../../../fixtures/stock_fixtures.dart';
 import 'stock_bloc_test.mocks.dart';
 
 @GenerateMocks([GetHistoricalStockUsecase])
@@ -33,6 +33,7 @@ void main() {
       changeOverTime: 0.0136,
     )
   ];
+  const tCompanyEntities = StockFixtures.companiesProfileEntities;
 
   const tServerFailure = ServerFailure('Server Failure');
 
@@ -54,13 +55,13 @@ void main() {
       },
       build: () => bloc,
       act: (bloc) => bloc.add(LoadHistoricalStockEvent(
-        company: StockConsts.companyWatchlist.first,
+        company: tCompanyEntities.first,
         from: DateTime(2024, 01, 18),
         to: DateTime(2024, 01, 18),
       )),
       expect: () => [
         LoadedStockState(
-          company: StockConsts.companyWatchlist.first,
+          company: tCompanyEntities.first,
           stocks: tStockEntities,
         ),
       ],
@@ -74,7 +75,7 @@ void main() {
       },
       build: () => bloc,
       act: (bloc) => bloc.add(LoadHistoricalStockEvent(
-        company: StockConsts.companyWatchlist.first,
+        company: tCompanyEntities.first,
         from: DateTime(2024, 01, 18),
         to: DateTime(2024, 01, 18),
       )),

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:stock_news_flutter/core/utils/responsive_utils.dart';
 import 'package:stock_news_flutter/core/widgets/bottom_navbar.dart';
-import 'package:stock_news_flutter/core/controller/menu_controller.dart'
-    as controller;
 
 class RootPageTabScaffold extends StatefulWidget {
   const RootPageTabScaffold({Key? key}) : super(key: key);
@@ -40,7 +37,6 @@ class _RootPageTabScaffoldState extends State<RootPageTabScaffold>
     final isTablet = ResponsiveUtils.isTablet(context);
 
     return Scaffold(
-      key: context.read<controller.MenuController>().scaffoldKey,
       bottomNavigationBar: !isTablet
           ? BottomNavbar(
               currentIndex: tabState.index,

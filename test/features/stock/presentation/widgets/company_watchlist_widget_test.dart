@@ -2,10 +2,11 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:stock_news_flutter/core/consts/stock_consts.dart';
 import 'package:stock_news_flutter/features/stock/domain/entities/company_entity.dart';
 import 'package:stock_news_flutter/features/stock/presentation/blocs/companies_profile_bloc.dart';
 import 'package:stock_news_flutter/features/stock/presentation/widgets/company_watchlist_widget.dart';
+
+import '../../../../fixtures/stock_fixtures.dart';
 
 class MockCompaniesProfileBloc
     extends MockBloc<CompaniesProfileEvent, CompaniesProfileState>
@@ -16,7 +17,7 @@ void main() {
 
   const keyPrefix = CompanyWatchListWidget.keyPrefix;
 
-  const tCompanyEntities = StockConsts.companyWatchlist;
+  const tCompanyEntities = StockFixtures.companiesProfileEntities;
 
   setUp(() {
     mockCompaniesProfileBloc = MockCompaniesProfileBloc();
@@ -38,7 +39,7 @@ void main() {
       );
       await tester.pumpWidget(_WidgetWrapper(
         mockCompaniesProfileBloc: mockCompaniesProfileBloc,
-        company: StockConsts.companyWatchlist.first,
+        company: tCompanyEntities.first,
       ));
       await tester.pumpAndSettle();
       const titleKey = Key('$keyPrefix-Title');
@@ -68,7 +69,7 @@ void main() {
       );
       await tester.pumpWidget(_WidgetWrapper(
         mockCompaniesProfileBloc: mockCompaniesProfileBloc,
-        company: StockConsts.companyWatchlist.first,
+        company: tCompanyEntities.first,
       ));
       await tester.pumpAndSettle();
       const titleKey = Key('$keyPrefix-Title');
@@ -98,7 +99,7 @@ void main() {
       );
       await tester.pumpWidget(_WidgetWrapper(
         mockCompaniesProfileBloc: mockCompaniesProfileBloc,
-        company: StockConsts.companyWatchlist.first,
+        company: tCompanyEntities.first,
       ));
       const titleKey = Key('$keyPrefix-Title');
       const listViewKey = Key('$keyPrefix-ListView');
