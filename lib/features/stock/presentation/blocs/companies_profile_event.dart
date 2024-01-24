@@ -13,5 +13,5 @@ class LoadCompaniesProfileEvent extends CompaniesProfileEvent {
   const LoadCompaniesProfileEvent({required this.symbols});
 
   @override
-  List<Object?> get props => [symbols];
+  List<Object?> get props => [];
 }

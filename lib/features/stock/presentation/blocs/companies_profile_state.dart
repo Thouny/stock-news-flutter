@@ -11,6 +11,10 @@ class InitialCompaniesProfileState extends CompaniesProfileState {
   const InitialCompaniesProfileState();
 }
 
+class LoadingCompaniesProfileState extends CompaniesProfileState {
+  const LoadingCompaniesProfileState();
+}
+
 class LoadedCompaniesProfileState extends CompaniesProfileState {
   final List<CompanyEntity> companies;
 

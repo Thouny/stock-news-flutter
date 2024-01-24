@@ -23,8 +23,9 @@ class CompaniesProfileBloc
     LoadCompaniesProfileEvent event,
     Emitter<CompaniesProfileState> emit,
   ) async {
-    final params = GetCompaniesProfileParams(symbols: event.symbols);
+    emit(const LoadingCompaniesProfileState());
 
+    final params = GetCompaniesProfileParams(symbols: event.symbols);
     final companiesEither = await _getCompaniesProfileUsecase(params);
     companiesEither.fold(
       (failure) => emit(ErrorCompaniesProfileState(message: failure.message)),
