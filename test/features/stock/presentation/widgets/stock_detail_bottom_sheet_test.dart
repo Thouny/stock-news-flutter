@@ -43,15 +43,15 @@ void main() {
       ));
       await tester.pumpAndSettle();
       const stockDetailKey = Key('$keyPrefix-StockDetailWidget');
-      const errortKey = Key('$keyPrefix-ErrorText');
+      const errortKey = Key('$keyPrefix-ErrorCard');
       const loadingIndicatorKey = Key('$keyPrefix-LoadingIndicator');
       // act
       final stockDetail = find.byKey(stockDetailKey);
-      final errorText = find.byKey(errortKey);
+      final errorCard = find.byKey(errortKey);
       final loadingIndicator = find.byKey(loadingIndicatorKey);
       // assert
       expect(stockDetail, findsOneWidget);
-      expect(errorText, findsNothing);
+      expect(errorCard, findsNothing);
       expect(loadingIndicator, findsNothing);
     });
   });
@@ -70,15 +70,15 @@ void main() {
       ));
       await tester.pumpAndSettle();
       const stockDetailKey = Key('$keyPrefix-StockDetailWidget');
-      const errortKey = Key('$keyPrefix-ErrorText');
+      const errortKey = Key('$keyPrefix-ErrorCard');
       const loadingIndicatorKey = Key('$keyPrefix-LoadingIndicator');
       // act
       final stockDetail = find.byKey(stockDetailKey);
-      final errorText = find.byKey(errortKey);
+      final errorCard = find.byKey(errortKey);
       final loadingIndicator = find.byKey(loadingIndicatorKey);
       // assert
       expect(stockDetail, findsNothing);
-      expect(errorText, findsOneWidget);
+      expect(errorCard, findsOneWidget);
       expect(loadingIndicator, findsNothing);
     });
   });
@@ -96,15 +96,15 @@ void main() {
         company: tCompanyEntities.first,
       ));
       const stockDetailKey = Key('$keyPrefix-StockDetailWidget');
-      const errortKey = Key('$keyPrefix-ErrorText');
+      const errortKey = Key('$keyPrefix-ErrorCard');
       const loadingIndicatorKey = Key('$keyPrefix-LoadingIndicator');
       // act
       final stockDetail = find.byKey(stockDetailKey);
-      final errorText = find.byKey(errortKey);
+      final errorCard = find.byKey(errortKey);
       final loadingIndicator = find.byKey(loadingIndicatorKey);
       // assert
       expect(stockDetail, findsNothing);
-      expect(errorText, findsNothing);
+      expect(errorCard, findsNothing);
       expect(loadingIndicator, findsOneWidget);
     });
   });

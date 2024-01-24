@@ -51,15 +51,15 @@ void main() {
 
       await tester.pumpAndSettle();
       const gridViewKey = Key('$keyPrefix-GridView');
-      const errorKey = Key('$keyPrefix-ErrorText');
+      const errorKey = Key('$keyPrefix-ErrorCard');
       const loadingIndicatorKey = Key('$keyPrefix-LoadingIndicator');
       // act
       final gridView = find.byKey(gridViewKey);
-      final errorText = find.byKey(errorKey);
+      final errorCard = find.byKey(errorKey);
       final loadingIndicator = find.byKey(loadingIndicatorKey);
       // assert
       expect(gridView, findsOneWidget);
-      expect(errorText, findsNothing);
+      expect(errorCard, findsNothing);
       expect(loadingIndicator, findsNothing);
     });
   });
@@ -78,15 +78,15 @@ void main() {
       ));
       await tester.pumpAndSettle();
       const gridViewKey = Key('$keyPrefix-GridView');
-      const errorKey = Key('$keyPrefix-ErrorText');
+      const errorKey = Key('$keyPrefix-ErrorCard');
       const loadingIndicatorKey = Key('$keyPrefix-LoadingIndicator');
       // act
       final gridView = find.byKey(gridViewKey);
-      final errorText = find.byKey(errorKey);
+      final errorCard = find.byKey(errorKey);
       final loadingIndicator = find.byKey(loadingIndicatorKey);
       // assert
       expect(gridView, findsNothing);
-      expect(errorText, findsOneWidget);
+      expect(errorCard, findsOneWidget);
       expect(loadingIndicator, findsNothing);
     });
   });
@@ -104,15 +104,15 @@ void main() {
         linkHandler: mockLinkHandler,
       ));
       const gridViewKey = Key('$keyPrefix-GridView');
-      const errorKey = Key('$keyPrefix-ErrorText');
+      const errorKey = Key('$keyPrefix-ErrorCard');
       const loadingIndicatorKey = Key('$keyPrefix-LoadingIndicator');
       // act
       final gridView = find.byKey(gridViewKey);
-      final errorText = find.byKey(errorKey);
+      final errorCard = find.byKey(errorKey);
       final loadingIndicator = find.byKey(loadingIndicatorKey);
       // assert
       expect(gridView, findsNothing);
-      expect(errorText, findsNothing);
+      expect(errorCard, findsNothing);
       expect(loadingIndicator, findsOneWidget);
     });
   });

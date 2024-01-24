@@ -5,6 +5,7 @@ import 'package:stock_news_flutter/core/theme/colors.dart';
 import 'package:stock_news_flutter/core/theme/padding.dart';
 import 'package:stock_news_flutter/core/utils/link_handler.dart';
 import 'package:stock_news_flutter/core/utils/responsive_utils.dart';
+import 'package:stock_news_flutter/core/widgets/error_card.dart';
 import 'package:stock_news_flutter/features/news/domain/entities/news_entity.dart';
 import 'package:stock_news_flutter/features/news/presentation/blocs/news_bloc.dart';
 
@@ -68,9 +69,9 @@ class _TopHeadlinesNewsListView extends StatelessWidget {
           );
         } else if (state is ErrorNewsState) {
           return Center(
-            child: Text(
-              state.message,
-              key: const Key('${TopHealinesNewsWidget.keyPrefix}-ErrorText'),
+            child: ErrorCard(
+              message: state.message,
+              key: const Key('${TopHealinesNewsWidget.keyPrefix}-ErrorCard'),
             ),
           );
         } else {

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stock_news_flutter/core/consts/stock_consts.dart';
 import 'package:stock_news_flutter/core/theme/border_radius.dart';
 import 'package:stock_news_flutter/core/theme/padding.dart';
+import 'package:stock_news_flutter/core/widgets/error_card.dart';
 import 'package:stock_news_flutter/features/stock/domain/entities/company_entity.dart';
 import 'package:stock_news_flutter/features/stock/presentation/blocs/companies_profile_bloc.dart';
 import 'package:stock_news_flutter/features/stock/presentation/widgets/stock_detail_bottom_sheet.dart';
@@ -80,9 +81,9 @@ class _CompanyListView extends StatelessWidget {
           );
         } else if (state is ErrorCompaniesProfileState) {
           return Center(
-            child: Text(
-              state.message,
-              key: const Key('${CompanyWatchListWidget.keyPrefix}-ErrorText'),
+            child: ErrorCard(
+              message: state.message,
+              key: const Key('${CompanyWatchListWidget.keyPrefix}-ErrorCard'),
             ),
           );
         } else {

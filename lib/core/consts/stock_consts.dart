@@ -5,7 +5,13 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 class StockConsts {
   StockConsts._();
 
-  static const List<String> companySymbols = ['AAPL'];
+  static const List<String> companySymbols = [
+    'AAPL',
+    // 'AMZN',
+    // 'MSFT',
+    // 'PYPL',
+    // 'NFLX',
+  ];
 
   static const List<CompanyEntity> companyWatchlist = [
     CompanyEntity(
