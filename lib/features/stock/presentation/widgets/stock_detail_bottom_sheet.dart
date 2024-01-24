@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stock_news_flutter/core/theme/padding.dart';
+import 'package:stock_news_flutter/core/widgets/error_card.dart';
 import 'package:stock_news_flutter/di/container.dart';
 import 'package:stock_news_flutter/features/stock/domain/entities/company_entity.dart';
 import 'package:stock_news_flutter/features/stock/presentation/blocs/stock_bloc.dart';
@@ -55,9 +56,9 @@ class StockDetailBottomSheetBuilder extends StatelessWidget {
                     company: state.company,
                   );
                 } else if (state is ErrorStockState) {
-                  return Text(
-                    key: const Key('$keyPrefix-ErrorText'),
-                    state.message,
+                  return ErrorCard(
+                    key: const Key('$keyPrefix-ErrorCard'),
+                    message: state.message,
                   );
                 } else {
                   return const Center(

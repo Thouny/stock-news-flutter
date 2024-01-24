@@ -43,17 +43,17 @@ void main() {
       await tester.pumpAndSettle();
       const titleKey = Key('$keyPrefix-Title');
       const listViewKey = Key('$keyPrefix-ListView');
-      const errorKey = Key('$keyPrefix-ErrorText');
+      const errorKey = Key('$keyPrefix-ErrorCard');
       const loadingIndicatorKey = Key('$keyPrefix-LoadingIndicator');
       // act
       final title = find.byKey(titleKey);
       final listView = find.byKey(listViewKey);
-      final errorText = find.byKey(errorKey);
+      final errorCard = find.byKey(errorKey);
       final loadingIndicator = find.byKey(loadingIndicatorKey);
       // assert
       expect(title, findsOneWidget);
       expect(listView, findsOneWidget);
-      expect(errorText, findsNothing);
+      expect(errorCard, findsNothing);
       expect(loadingIndicator, findsNothing);
     });
   });
@@ -73,17 +73,17 @@ void main() {
       await tester.pumpAndSettle();
       const titleKey = Key('$keyPrefix-Title');
       const listViewKey = Key('$keyPrefix-ListView');
-      const errorKey = Key('$keyPrefix-ErrorText');
+      const errorKey = Key('$keyPrefix-ErrorCard');
       const loadingIndicatorKey = Key('$keyPrefix-LoadingIndicator');
       // act
       final title = find.byKey(titleKey);
       final listView = find.byKey(listViewKey);
-      final errorText = find.byKey(errorKey);
+      final errorCard = find.byKey(errorKey);
       final loadingIndicator = find.byKey(loadingIndicatorKey);
       // assert
       expect(title, findsOneWidget);
       expect(listView, findsNothing);
-      expect(errorText, findsOneWidget);
+      expect(errorCard, findsOneWidget);
       expect(loadingIndicator, findsNothing);
     });
   });
@@ -102,17 +102,17 @@ void main() {
       ));
       const titleKey = Key('$keyPrefix-Title');
       const listViewKey = Key('$keyPrefix-ListView');
-      const errorKey = Key('$keyPrefix-ErrorText');
+      const errorKey = Key('$keyPrefix-ErrorCard');
       const loadingIndicatorKey = Key('$keyPrefix-LoadingIndicator');
       // act
       final title = find.byKey(titleKey);
       final listView = find.byKey(listViewKey);
-      final errorText = find.byKey(errorKey);
+      final errorCard = find.byKey(errorKey);
       final loadingIndicator = find.byKey(loadingIndicatorKey);
       // assert
       expect(title, findsOneWidget);
       expect(listView, findsNothing);
-      expect(errorText, findsNothing);
+      expect(errorCard, findsNothing);
       expect(loadingIndicator, findsOneWidget);
     });
   });

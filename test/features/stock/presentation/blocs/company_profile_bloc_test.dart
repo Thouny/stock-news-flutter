@@ -42,7 +42,10 @@ void main() {
         return bloc.add(const LoadCompaniesProfileEvent(symbols: [tSymbol]));
       },
       expect: () {
-        return [const LoadedCompaniesProfileState(companies: tCompanyEntities)];
+        return [
+          const LoadingCompaniesProfileState(),
+          const LoadedCompaniesProfileState(companies: tCompanyEntities),
+        ];
       },
     );
 
@@ -57,7 +60,10 @@ void main() {
         return bloc.add(const LoadCompaniesProfileEvent(symbols: [tSymbol]));
       },
       expect: () {
-        return [ErrorCompaniesProfileState(message: tServerFailure.message)];
+        return [
+          const LoadingCompaniesProfileState(),
+          ErrorCompaniesProfileState(message: tServerFailure.message)
+        ];
       },
     );
   });

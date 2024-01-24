@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stock_news_flutter/core/consts/stock_consts.dart';
 import 'package:stock_news_flutter/core/theme/border_radius.dart';
 import 'package:stock_news_flutter/core/theme/padding.dart';
+import 'package:stock_news_flutter/core/widgets/error_card.dart';
 import 'package:stock_news_flutter/features/stock/domain/entities/company_entity.dart';
 import 'package:stock_news_flutter/features/stock/presentation/blocs/companies_profile_bloc.dart';
 import 'package:stock_news_flutter/features/stock/presentation/widgets/stock_detail_bottom_sheet.dart';
@@ -58,22 +60,30 @@ class _CompanyListView extends StatelessWidget {
     return BlocBuilder<CompaniesProfileBloc, CompaniesProfileState>(
       builder: (context, state) {
         if (state is LoadedCompaniesProfileState) {
-          return ListView.builder(
-            key: const Key('${CompanyWatchListWidget.keyPrefix}-ListView'),
-            itemCount: state.companies.length,
-            itemBuilder: (context, index) {
-              final company = state.companies[index];
-              return CompanyOverviewCard(
-                company: company,
-                onTap: () => showModal(context, company),
-              );
+          return RefreshIndicator(
+            onRefresh: () async {
+              final bloc = BlocProvider.of<CompaniesProfileBloc>(context);
+              bloc.add(const LoadCompaniesProfileEvent(
+                symbols: StockConsts.companySymbols,
+              ));
             },
+            child: ListView.builder(
+              key: const Key('${CompanyWatchListWidget.keyPrefix}-ListView'),
+              itemCount: state.companies.length,
+              itemBuilder: (context, index) {
+                final company = state.companies[index];
+                return CompanyOverviewCard(
+                  company: company,
+                  onTap: () => showModal(context, company),
+                );
+              },
+            ),
           );
         } else if (state is ErrorCompaniesProfileState) {
           return Center(
-            child: Text(
-              state.message,
-              key: const Key('${CompanyWatchListWidget.keyPrefix}-ErrorText'),
+            child: ErrorCard(
+              message: state.message,
+              key: const Key('${CompanyWatchListWidget.keyPrefix}-ErrorCard'),
             ),
           );
         } else {
