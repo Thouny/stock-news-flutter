@@ -2,7 +2,6 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:stock_news_flutter/features/stock/domain/entities/company_entity.dart';
 import 'package:stock_news_flutter/features/stock/presentation/blocs/stock_bloc.dart';
 import 'package:stock_news_flutter/features/stock/presentation/widgets/stock_detail_bottom_sheet.dart';
@@ -21,12 +20,10 @@ void main() {
 
   setUp(() {
     mockStockBloc = MockStockBloc();
-    GetIt.I.registerFactory<StockBloc>(() => mockStockBloc);
   });
 
   tearDown(() {
     mockStockBloc.close();
-    GetIt.I.reset();
   });
 
   group('LoadedStockState', () {

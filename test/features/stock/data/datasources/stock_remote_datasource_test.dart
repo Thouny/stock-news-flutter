@@ -145,7 +145,7 @@ void main() {
       // arrange
       when(mockStorage.read<String>(tKey)).thenAnswer((_) async => tApiKey);
       when(mockClient.getCompanyProfile(tSymbol, tApiKey)).thenAnswer(
-          (_) async => HttpResponse(tGetCompanyProfileResponseModel,
+          (_) async => HttpResponse([tGetCompanyProfileResponseModel],
               Response(requestOptions: RequestOptions(), statusCode: 200)));
       // act
       final result = await dataSource.getCompanyProfile(tSymbol);

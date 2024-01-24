@@ -137,6 +137,21 @@ class StockFixtures {
       vwap: 187.93,
       label: "January 18, 24",
       changeOverTime: 0.0136,
+    ),
+    HistoricalDataModel(
+      date: "2024-01-19",
+      open: 186.09,
+      high: 189.14,
+      low: 185.83,
+      close: 188.63,
+      adjClose: 188.63,
+      volume: 77500694,
+      unadjustedVolume: 77082288,
+      change: 2.54,
+      changePercent: 1.36,
+      vwap: 187.93,
+      label: "January 19, 24",
+      changeOverTime: 0.0136,
     )
   ];
 

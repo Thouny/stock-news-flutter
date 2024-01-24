@@ -59,7 +59,7 @@ class _FinancialModelingPrepHttpClient
   }
 
   @override
-  Future<HttpResponse<GetCompanyProfileResponseModel>> getCompanyProfile(
+  Future<HttpResponse<List<GetCompanyProfileResponseModel>>> getCompanyProfile(
     String symbol,
     String apiKey,
   ) async {
@@ -67,24 +67,28 @@ class _FinancialModelingPrepHttpClient
     final queryParameters = <String, dynamic>{r'apikey': apiKey};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<GetCompanyProfileResponseModel>>(Options(
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<HttpResponse<List<GetCompanyProfileResponseModel>>>(
+            Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/profile/${symbol}',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = GetCompanyProfileResponseModel.fromJson(_result.data!);
+                .compose(
+                  _dio.options,
+                  '/profile/${symbol}',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(
+                    baseUrl: _combineBaseUrls(
+                  _dio.options.baseUrl,
+                  baseUrl,
+                ))));
+    var value = _result.data!
+        .map((dynamic i) =>
+            GetCompanyProfileResponseModel.fromJson(i as Map<String, dynamic>))
+        .toList();
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

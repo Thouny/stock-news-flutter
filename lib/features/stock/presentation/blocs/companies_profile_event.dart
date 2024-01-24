@@ -1,13 +1,13 @@
 part of 'companies_profile_bloc.dart';
 
-abstract class CompaniesProfilesEvent extends Equatable {
-  const CompaniesProfilesEvent();
+abstract class CompaniesProfileEvent extends Equatable {
+  const CompaniesProfileEvent();
 
   @override
   List<Object?> get props => [];
 }
 
-class LoadCompaniesProfileEvent extends CompaniesProfilesEvent {
+class LoadCompaniesProfileEvent extends CompaniesProfileEvent {
   final List<String> symbols;
 
   const LoadCompaniesProfileEvent({required this.symbols});

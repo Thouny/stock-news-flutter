@@ -9,7 +9,7 @@ part 'companies_profile_event.dart';
 part 'companies_profile_state.dart';
 
 class CompaniesProfileBloc
-    extends Bloc<CompaniesProfilesEvent, CompaniesProfileState> {
+    extends Bloc<CompaniesProfileEvent, CompaniesProfileState> {
   final GetCompaniesProfileUsecase _getCompaniesProfileUsecase;
 
   CompaniesProfileBloc(

@@ -61,6 +61,6 @@ class StockRemoteDataSourceImpl implements StockRemoteDataSource {
       throw const ServerException('Server responded with an error code');
     }
 
-    return response.data;
+    return response.data.first;
   }
 }

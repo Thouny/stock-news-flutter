@@ -85,32 +85,34 @@ class MockFinancialModelingPrepHttpClient extends _i1.Mock
               .Future<_i2.HttpResponse<_i5.GetHistoricalStockResponseModel>>);
 
   @override
-  _i4.Future<
-      _i2.HttpResponse<_i6.GetCompanyProfileResponseModel>> getCompanyProfile(
+  _i4.Future<_i2.HttpResponse<List<_i6.GetCompanyProfileResponseModel>>>
+      getCompanyProfile(
     String? symbol,
     String? apiKey,
   ) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #getCompanyProfile,
-          [
-            symbol,
-            apiKey,
-          ],
-        ),
-        returnValue: _i4
-            .Future<_i2.HttpResponse<_i6.GetCompanyProfileResponseModel>>.value(
-            _FakeHttpResponse_0<_i6.GetCompanyProfileResponseModel>(
-          this,
-          Invocation.method(
-            #getCompanyProfile,
-            [
-              symbol,
-              apiKey,
-            ],
-          ),
-        )),
-      ) as _i4.Future<_i2.HttpResponse<_i6.GetCompanyProfileResponseModel>>);
+          (super.noSuchMethod(
+            Invocation.method(
+              #getCompanyProfile,
+              [
+                symbol,
+                apiKey,
+              ],
+            ),
+            returnValue: _i4.Future<
+                    _i2.HttpResponse<
+                        List<_i6.GetCompanyProfileResponseModel>>>.value(
+                _FakeHttpResponse_0<List<_i6.GetCompanyProfileResponseModel>>(
+              this,
+              Invocation.method(
+                #getCompanyProfile,
+                [
+                  symbol,
+                  apiKey,
+                ],
+              ),
+            )),
+          ) as _i4.Future<
+              _i2.HttpResponse<List<_i6.GetCompanyProfileResponseModel>>>);
 }
 
 /// A class which mocks [SecureStorage].

@@ -19,7 +19,7 @@ abstract class FinancialModelingPrepHttpClient {
   );
 
   @GET('/profile/{symbol}')
-  Future<HttpResponse<GetCompanyProfileResponseModel>> getCompanyProfile(
+  Future<HttpResponse<List<GetCompanyProfileResponseModel>>> getCompanyProfile(
     @Path('symbol') String symbol,
     @Query('apikey') String apiKey,
   );
